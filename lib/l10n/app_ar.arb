@@ -113,7 +113,31 @@
   "cannotDelete": "لا يمكن الحذف",
   "atLeastOnePageRequired": "يجب أن تكون هناك صفحة واحدة على الأقل.",
   "deletePageQuestion": "حذف الصفحة؟",
-  "areYouSureRemovePage": "هل أنت متأكد أنك تريد إزالة هذه الصفحة؟"
+  "areYouSureRemovePage": "هل أنت متأكد أنك تريد إزالة هذه الصفحة؟",
+  
+  "yourPdfIsReady": "ملف PDF الخاص بك جاهز.",
+  "documentSuccessfullyDigitized": "تمت رقمنة مستندك وتحسينه بنجاح.",
+  "opening": "جارٍ الفتح...",
+  "sharePdf": "مشاركة PDF",
+  "saveToDevice": "حفظ على الجهاز",
+  "scanAnotherDocument": "مسح مستند آخر",
+  "pdfFileCouldNotBeFound": "تعذر العثور على ملف PDF.",
+  "noPdfViewerAvailable": "لا يتوفر عارض PDF على هذا الجهاز.",
+  "unableToOpenPdf": "تعذر فتح ملف PDF.",
+  "shareError": "خطأ في المشاركة",
+  "unableToSharePdf": "تعذر مشاركة ملف PDF.",
+  "pdfCreatedWithAlignPdfAi": "تم إنشاء ملف PDF باستخدام Align PDF AI",
+  "savePdf": "حفظ PDF",
+  "pdfSaved": "تم حفظ PDF",
+  "fileSavedSuccessfully": "تم حفظ {fileName} بنجاح.",
+  "unableToSavePdf": "تعذر حفظ ملف PDF.",
+  
+  "scanAlignSimplify": "امسح. حاذِ. بسّط.",
+  "makingDocumentsSmarter": "نجعل مستنداتك أكثر ذكاءً",
+  "noHistoryYet": "لا يوجد سجل حتى الآن",
+  "createdPdfsWillAppearHere": "ستظهر ملفات PDF التي أنشأتها هنا."
+
+
 
 
 }

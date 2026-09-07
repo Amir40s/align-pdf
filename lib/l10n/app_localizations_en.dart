@@ -311,4 +311,66 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get areYouSureRemovePage => 'Are you sure you want to remove this page?';
+
+  @override
+  String get yourPdfIsReady => 'Your PDF is ready.';
+
+  @override
+  String get documentSuccessfullyDigitized => 'Your document has been successfully\ndigitized and optimized.';
+
+  @override
+  String get opening => 'Opening...';
+
+  @override
+  String get sharePdf => 'Share PDF';
+
+  @override
+  String get saveToDevice => 'Save to Device';
+
+  @override
+  String get scanAnotherDocument => 'Scan Another Document';
+
+  @override
+  String get pdfFileCouldNotBeFound => 'PDF file could not be found.';
+
+  @override
+  String get noPdfViewerAvailable => 'No PDF viewer is available on this device.';
+
+  @override
+  String get unableToOpenPdf => 'Unable to open the PDF.';
+
+  @override
+  String get shareError => 'Share Error';
+
+  @override
+  String get unableToSharePdf => 'Unable to share the PDF.';
+
+  @override
+  String get pdfCreatedWithAlignPdfAi => 'PDF created with Align PDF AI';
+
+  @override
+  String get savePdf => 'Save PDF';
+
+  @override
+  String get pdfSaved => 'PDF Saved';
+
+  @override
+  String fileSavedSuccessfully(Object fileName) {
+    return '$fileName has been saved successfully.';
+  }
+
+  @override
+  String get unableToSavePdf => 'Unable to save the PDF.';
+
+  @override
+  String get scanAlignSimplify => 'Scan. Align. Simplify.';
+
+  @override
+  String get makingDocumentsSmarter => 'Making documents smarter';
+
+  @override
+  String get noHistoryYet => 'No History Yet';
+
+  @override
+  String get createdPdfsWillAppearHere => 'Your created PDFs will appear here.';
 }

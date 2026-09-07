@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:align_pdf_ai/app/core/utils/l10n_getx_helper.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_snackbar.dart';
 import 'package:align_pdf_ai/app/core/widgets/debug_logs.dart';
 import 'package:file_picker/file_picker.dart';
@@ -41,7 +42,7 @@ class ScanResultController extends GetxController {
       isOpening.value = true;
 
       if (!await pdfFile.exists()) {
-        AppSnackbar.error('PDF Error', 'PDF file could not be found.');
+        AppSnackbar.error(getl10n.pdfError, getl10n.pdfFileCouldNotBeFound);
         return;
       }
 
@@ -50,16 +51,13 @@ class ScanResultController extends GetxController {
       debugLog('Open PDF result: ${result.type} - ${result.message}');
 
       if (result.type != ResultType.done) {
-        AppSnackbar.error(
-          'PDF Error',
-          'No PDF viewer is available on this device.',
-        );
+        AppSnackbar.error(getl10n.pdfError, getl10n.thisPdfIsNoLongerAvailable);
       }
     } catch (e, stackTrace) {
       debugLog('Open PDF Error: $e');
       debugLog(stackTrace.toString());
 
-      AppSnackbar.error('PDF Error', 'Unable to open the PDF.');
+      AppSnackbar.error(getl10n.pdfError, getl10n.unableToOpenPdf);
     } finally {
       isOpening.value = false;
     }
@@ -72,7 +70,7 @@ class ScanResultController extends GetxController {
       isSharing.value = true;
 
       if (!await pdfFile.exists()) {
-        AppSnackbar.error('PDF Error', 'PDF file could not be found.');
+        AppSnackbar.error(getl10n.pdfError, getl10n.pdfFileCouldNotBeFound);
         return;
       }
 
@@ -86,7 +84,7 @@ class ScanResultController extends GetxController {
       debugLog('Share PDF Error: $e');
       debugLog(stackTrace.toString());
 
-      AppSnackbar.error('Share Error', 'Unable to share the PDF.');
+      AppSnackbar.error(getl10n.shareError, getl10n.unableToSharePdf);
     } finally {
       isSharing.value = false;
     }
@@ -99,7 +97,7 @@ class ScanResultController extends GetxController {
       isSaving.value = true;
 
       if (!await pdfFile.exists()) {
-        AppSnackbar.error('PDF Error', 'PDF file could not be found.');
+        AppSnackbar.error(getl10n.pdfError, getl10n.pdfFileCouldNotBeFound);
         return;
       }
 
@@ -120,14 +118,15 @@ class ScanResultController extends GetxController {
       debugLog('PDF SAVED: $savedFile');
 
       AppSnackbar.success(
-        'PDF Saved',
-        '$fileName has been saved successfully.',
+        getl10n.pdfSaved,
+        getl10n.fileSavedSuccessfully(fileName),
+        // '$fileName has been saved successfully.',
       );
     } catch (e, stackTrace) {
       debugLog('Save PDF Error: $e');
       debugLog(stackTrace.toString());
 
-      AppSnackbar.error('PDF Error', 'Unable to save the PDF.');
+      AppSnackbar.error(getl10n.error, getl10n.unableToSavePdf);
     } finally {
       isSaving.value = false;
     }

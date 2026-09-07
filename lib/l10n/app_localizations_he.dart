@@ -311,4 +311,66 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get areYouSureRemovePage => 'האם אתה בטוח שברצונך להסיר עמוד זה?';
+
+  @override
+  String get yourPdfIsReady => 'קובץ ה-PDF שלך מוכן.';
+
+  @override
+  String get documentSuccessfullyDigitized => 'המסמך שלך עבר דיגיטציה ושופר בהצלחה.';
+
+  @override
+  String get opening => 'פותח...';
+
+  @override
+  String get sharePdf => 'שיתוף PDF';
+
+  @override
+  String get saveToDevice => 'שמירה במכשיר';
+
+  @override
+  String get scanAnotherDocument => 'סרוק מסמך נוסף';
+
+  @override
+  String get pdfFileCouldNotBeFound => 'לא ניתן למצוא את קובץ ה-PDF.';
+
+  @override
+  String get noPdfViewerAvailable => 'אין מציג PDF זמין במכשיר זה.';
+
+  @override
+  String get unableToOpenPdf => 'לא ניתן לפתוח את קובץ ה-PDF.';
+
+  @override
+  String get shareError => 'שגיאת שיתוף';
+
+  @override
+  String get unableToSharePdf => 'לא ניתן לשתף את קובץ ה-PDF.';
+
+  @override
+  String get pdfCreatedWithAlignPdfAi => 'קובץ PDF נוצר באמצעות Align PDF AI';
+
+  @override
+  String get savePdf => 'שמירת PDF';
+
+  @override
+  String get pdfSaved => 'ה-PDF נשמר';
+
+  @override
+  String fileSavedSuccessfully(Object fileName) {
+    return '$fileName נשמר בהצלחה.';
+  }
+
+  @override
+  String get unableToSavePdf => 'לא ניתן לשמור את קובץ ה-PDF.';
+
+  @override
+  String get scanAlignSimplify => 'סרוק. יישר. פשט.';
+
+  @override
+  String get makingDocumentsSmarter => 'הופכים את המסמכים לחכמים יותר';
+
+  @override
+  String get noHistoryYet => 'אין היסטוריה עדיין';
+
+  @override
+  String get createdPdfsWillAppearHere => 'קובצי ה-PDF שיצרת יופיעו כאן.';
 }

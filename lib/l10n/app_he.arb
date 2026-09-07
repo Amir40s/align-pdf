@@ -114,8 +114,28 @@
   "cannotDelete": "לא ניתן למחוק",
   "atLeastOnePageRequired": "נדרש לפחות עמוד אחד.",
   "deletePageQuestion": "למחוק את העמוד?",
-  "areYouSureRemovePage": "האם אתה בטוח שברצונך להסיר עמוד זה?"
-
-
+  "areYouSureRemovePage": "האם אתה בטוח שברצונך להסיר עמוד זה?",
+  
+  "yourPdfIsReady": "קובץ ה-PDF שלך מוכן.",
+  "documentSuccessfullyDigitized": "המסמך שלך עבר דיגיטציה ושופר בהצלחה.",
+  "opening": "פותח...",
+  "sharePdf": "שיתוף PDF",
+  "saveToDevice": "שמירה במכשיר",
+  "scanAnotherDocument": "סרוק מסמך נוסף",
+  "pdfFileCouldNotBeFound": "לא ניתן למצוא את קובץ ה-PDF.",
+  "noPdfViewerAvailable": "אין מציג PDF זמין במכשיר זה.",
+  "unableToOpenPdf": "לא ניתן לפתוח את קובץ ה-PDF.",
+  "shareError": "שגיאת שיתוף",
+  "unableToSharePdf": "לא ניתן לשתף את קובץ ה-PDF.",
+  "pdfCreatedWithAlignPdfAi": "קובץ PDF נוצר באמצעות Align PDF AI",
+  "savePdf": "שמירת PDF",
+  "pdfSaved": "ה-PDF נשמר",
+  "fileSavedSuccessfully": "{fileName} נשמר בהצלחה.",
+  "unableToSavePdf": "לא ניתן לשמור את קובץ ה-PDF.",
+  
+  "scanAlignSimplify": "סרוק. יישר. פשט.",
+  "makingDocumentsSmarter": "הופכים את המסמכים לחכמים יותר",
+  "noHistoryYet": "אין היסטוריה עדיין",
+  "createdPdfsWillAppearHere": "קובצי ה-PDF שיצרת יופיעו כאן."
 
 }

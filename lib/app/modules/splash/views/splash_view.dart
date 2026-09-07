@@ -1,4 +1,5 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:align_pdf_ai/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class SplashView extends GetView<SplashController> {
               ),
               Gap(1.2.h),
               AppTextWidget(
-                text: 'Scan. Align. Simplify.',
+                text: context.l10n.scanAlignSimplify,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.center,
               ),
@@ -57,7 +58,7 @@ class SplashView extends GetView<SplashController> {
               ),
               Gap(2.h),
               AppTextWidget(
-                text: 'Making documents smarter',
+                text: context.l10n.makingDocumentsSmarter,
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
                 color: Colors.black54,

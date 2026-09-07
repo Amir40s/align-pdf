@@ -311,4 +311,66 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get areYouSureRemovePage => 'هل أنت متأكد أنك تريد إزالة هذه الصفحة؟';
+
+  @override
+  String get yourPdfIsReady => 'ملف PDF الخاص بك جاهز.';
+
+  @override
+  String get documentSuccessfullyDigitized => 'تمت رقمنة مستندك وتحسينه بنجاح.';
+
+  @override
+  String get opening => 'جارٍ الفتح...';
+
+  @override
+  String get sharePdf => 'مشاركة PDF';
+
+  @override
+  String get saveToDevice => 'حفظ على الجهاز';
+
+  @override
+  String get scanAnotherDocument => 'مسح مستند آخر';
+
+  @override
+  String get pdfFileCouldNotBeFound => 'تعذر العثور على ملف PDF.';
+
+  @override
+  String get noPdfViewerAvailable => 'لا يتوفر عارض PDF على هذا الجهاز.';
+
+  @override
+  String get unableToOpenPdf => 'تعذر فتح ملف PDF.';
+
+  @override
+  String get shareError => 'خطأ في المشاركة';
+
+  @override
+  String get unableToSharePdf => 'تعذر مشاركة ملف PDF.';
+
+  @override
+  String get pdfCreatedWithAlignPdfAi => 'تم إنشاء ملف PDF باستخدام Align PDF AI';
+
+  @override
+  String get savePdf => 'حفظ PDF';
+
+  @override
+  String get pdfSaved => 'تم حفظ PDF';
+
+  @override
+  String fileSavedSuccessfully(Object fileName) {
+    return 'تم حفظ $fileName بنجاح.';
+  }
+
+  @override
+  String get unableToSavePdf => 'تعذر حفظ ملف PDF.';
+
+  @override
+  String get scanAlignSimplify => 'امسح. حاذِ. بسّط.';
+
+  @override
+  String get makingDocumentsSmarter => 'نجعل مستنداتك أكثر ذكاءً';
+
+  @override
+  String get noHistoryYet => 'لا يوجد سجل حتى الآن';
+
+  @override
+  String get createdPdfsWillAppearHere => 'ستظهر ملفات PDF التي أنشأتها هنا.';
 }

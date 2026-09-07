@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:align_pdf_ai/app/core/services/history_storage_service.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_getx_helper.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_snackbar.dart';
 import 'package:align_pdf_ai/app/modules/history/model/history_model.dart';
 import 'package:align_pdf_ai/app/modules/home/controllers/home_controller.dart';
@@ -26,16 +27,14 @@ class HistoryController extends GetxController {
   Future<void> openPdf(HistoryItem item) async {
     final file = File(item.filePath);
     if (!await file.exists()) {
-      AppSnackbar.warning('File Not Found', 'This PDF is no longer available.');
+      AppSnackbar.warning(getl10n.fileNotFound, getl10n.pdfFileCouldNotBeFound);
       return;
     }
     final result = await OpenFilex.open(item.filePath, type: 'application/pdf');
     if (result.type != ResultType.done) {
       AppSnackbar.error(
-        'Unable to Open',
-        result.message.isNotEmpty
-            ? result.message
-            : 'This PDF could not be opened.',
+        getl10n.unableToOpen,
+        result.message.isNotEmpty ? result.message : getl10n.unableToOpenPdf,
       );
     }
   }
@@ -43,7 +42,7 @@ class HistoryController extends GetxController {
   Future<void> sharePdf(HistoryItem item) async {
     final file = File(item.filePath);
     if (!await file.exists()) {
-      AppSnackbar.error('File Not Found', 'This PDF is no longer available.');
+      AppSnackbar.error(getl10n.fileNotFound, getl10n.pdfFileCouldNotBeFound);
       return;
     }
 
@@ -55,16 +54,16 @@ class HistoryController extends GetxController {
   Future<void> deletePdf(HistoryItem item) async {
     final confirmed = await Get.dialog<bool>(
       AlertDialog(
-        title: const Text('Delete PDF'),
-        content: const Text('Are you sure you want to delete this PDF?'),
+        title: Text(getl10n.deletePdf),
+        content: Text(getl10n.areYouSureDeletePdf),
         actions: [
           TextButton(
             onPressed: () => Get.back(result: false),
-            child: const Text('Cancel'),
+            child: Text(getl10n.cancel),
           ),
           TextButton(
             onPressed: () => Get.back(result: true),
-            child: const Text('Delete'),
+            child: Text(getl10n.delete),
           ),
         ],
       ),
@@ -108,7 +107,7 @@ class HistoryController extends GetxController {
               const SizedBox(height: 20),
               ListTile(
                 leading: const Icon(Icons.open_in_new_rounded),
-                title: const Text('Open PDF'),
+                title: Text(getl10n.openPdf),
                 onTap: () {
                   Get.back();
                   openPdf(item);
@@ -116,7 +115,7 @@ class HistoryController extends GetxController {
               ),
               ListTile(
                 leading: const Icon(Icons.share_outlined),
-                title: const Text('Share'),
+                title: Text(getl10n.share),
                 onTap: () {
                   Get.back();
                   sharePdf(item);
@@ -125,7 +124,7 @@ class HistoryController extends GetxController {
 
               ListTile(
                 leading: const Icon(Icons.delete_outline_rounded),
-                title: const Text('Delete'),
+                title: Text(getl10n.delete),
                 onTap: () {
                   Get.back();
                   deletePdf(item);
@@ -145,7 +144,7 @@ class HistoryController extends GetxController {
     if (date.year == now.year &&
         date.month == now.month &&
         date.day == now.day) {
-      return 'Today';
+      return getl10n.today;
     }
 
     final yesterday = now.subtract(const Duration(days: 1));
@@ -153,7 +152,7 @@ class HistoryController extends GetxController {
     if (date.year == yesterday.year &&
         date.month == yesterday.month &&
         date.day == yesterday.day) {
-      return 'Yesterday';
+      return getl10n.yesterday;
     }
 
     return '${date.day}/${date.month}/${date.year}';

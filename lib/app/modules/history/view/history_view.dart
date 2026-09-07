@@ -1,4 +1,5 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_appbar.dart';
 import 'package:align_pdf_ai/app/modules/history/controller/history_controller.dart';
@@ -30,7 +31,7 @@ class HistoryView extends GetView<HistoryController> {
 
             return HistoryCard(
               title: item.title,
-              pages: '${item.pages} pages',
+              pages: '${item.pages} ${context.l10n.pages}',
               date: controller.formatDate(item.createdAt),
               onTap: () => controller.openPdf(item),
               onMoreTap: () => controller.showActions(item),
@@ -65,14 +66,14 @@ class _EmptyHistory extends StatelessWidget {
               ),
             ),
             Gap(2.h),
-            const AppTextWidget(
-              text: 'No History Yet',
+            AppTextWidget(
+              text: context.l10n.noHistoryYet,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
             Gap(1.h),
-            const AppTextWidget(
-              text: 'Your created PDFs will appear here.',
+            AppTextWidget(
+              text: context.l10n.createdPdfsWillAppearHere,
               fontSize: 14,
               textAlign: TextAlign.center,
               fontWeight: FontWeight.w400,

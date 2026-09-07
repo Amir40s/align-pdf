@@ -114,7 +114,29 @@
   "cannotDelete": "Cannot Delete",
   "atLeastOnePageRequired": "At least one page is required.",
   "deletePageQuestion": "Delete Page?",
-  "areYouSureRemovePage": "Are you sure you want to remove this page?"
+  "areYouSureRemovePage": "Are you sure you want to remove this page?",
+  
+  "yourPdfIsReady": "Your PDF is ready.",
+  "documentSuccessfullyDigitized": "Your document has been successfully\ndigitized and optimized.",
+  "opening": "Opening...",
+  "sharePdf": "Share PDF",
+  "saveToDevice": "Save to Device",
+  "scanAnotherDocument": "Scan Another Document",
+  "pdfFileCouldNotBeFound": "PDF file could not be found.",
+  "noPdfViewerAvailable": "No PDF viewer is available on this device.",
+  "unableToOpenPdf": "Unable to open the PDF.",
+  "shareError": "Share Error",
+  "unableToSharePdf": "Unable to share the PDF.",
+  "pdfCreatedWithAlignPdfAi": "PDF created with Align PDF AI",
+  "savePdf": "Save PDF",
+  "pdfSaved": "PDF Saved",
+  "fileSavedSuccessfully": "{fileName} has been saved successfully.",
+  "unableToSavePdf": "Unable to save the PDF.",
+   "scanAlignSimplify": "Scan. Align. Simplify.",
+  "makingDocumentsSmarter": "Making documents smarter",
+  "noHistoryYet": "No History Yet",
+  "createdPdfsWillAppearHere": "Your created PDFs will appear here."
+
 
 }
 

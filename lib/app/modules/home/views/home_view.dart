@@ -189,7 +189,7 @@ class HomeView extends GetView<HomeController> {
 
                             return HistoryCard(
                               title: item.title,
-                              pages: '${item.pages} pages',
+                              pages: '${item.pages} ${context.l10n.pages}',
                               date: controller.formatDate(item.createdAt),
                               onTap: () => controller.openPdf(item),
                               onMoreTap: () => controller.showActions(item),

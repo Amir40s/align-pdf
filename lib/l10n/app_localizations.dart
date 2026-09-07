@@ -6,7 +6,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_ar.dart';
+import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_fr.dart';
 import 'app_localizations_he.dart';
 
 // ignore_for_file: type=lint
@@ -93,7 +96,10 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
+    Locale('de'),
     Locale('en'),
+    Locale('es'),
+    Locale('fr'),
     Locale('he')
   ];
 
@@ -696,6 +702,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Are you sure you want to remove this page?'**
   String get areYouSureRemovePage;
+
+  /// No description provided for @yourPdfIsReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Your PDF is ready.'**
+  String get yourPdfIsReady;
+
+  /// No description provided for @documentSuccessfullyDigitized.
+  ///
+  /// In en, this message translates to:
+  /// **'Your document has been successfully\ndigitized and optimized.'**
+  String get documentSuccessfullyDigitized;
+
+  /// No description provided for @opening.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening...'**
+  String get opening;
+
+  /// No description provided for @sharePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Share PDF'**
+  String get sharePdf;
+
+  /// No description provided for @saveToDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'Save to Device'**
+  String get saveToDevice;
+
+  /// No description provided for @scanAnotherDocument.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan Another Document'**
+  String get scanAnotherDocument;
+
+  /// No description provided for @pdfFileCouldNotBeFound.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF file could not be found.'**
+  String get pdfFileCouldNotBeFound;
+
+  /// No description provided for @noPdfViewerAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No PDF viewer is available on this device.'**
+  String get noPdfViewerAvailable;
+
+  /// No description provided for @unableToOpenPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to open the PDF.'**
+  String get unableToOpenPdf;
+
+  /// No description provided for @shareError.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Error'**
+  String get shareError;
+
+  /// No description provided for @unableToSharePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to share the PDF.'**
+  String get unableToSharePdf;
+
+  /// No description provided for @pdfCreatedWithAlignPdfAi.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF created with Align PDF AI'**
+  String get pdfCreatedWithAlignPdfAi;
+
+  /// No description provided for @savePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Save PDF'**
+  String get savePdf;
+
+  /// No description provided for @pdfSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF Saved'**
+  String get pdfSaved;
+
+  /// No description provided for @fileSavedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'{fileName} has been saved successfully.'**
+  String fileSavedSuccessfully(Object fileName);
+
+  /// No description provided for @unableToSavePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to save the PDF.'**
+  String get unableToSavePdf;
+
+  /// No description provided for @scanAlignSimplify.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan. Align. Simplify.'**
+  String get scanAlignSimplify;
+
+  /// No description provided for @makingDocumentsSmarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Making documents smarter'**
+  String get makingDocumentsSmarter;
+
+  /// No description provided for @noHistoryYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No History Yet'**
+  String get noHistoryYet;
+
+  /// No description provided for @createdPdfsWillAppearHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Your created PDFs will appear here.'**
+  String get createdPdfsWillAppearHere;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -707,7 +833,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en', 'he'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'de', 'en', 'es', 'fr', 'he'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -719,7 +845,10 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'ar': return AppLocalizationsAr();
+    case 'de': return AppLocalizationsDe();
     case 'en': return AppLocalizationsEn();
+    case 'es': return AppLocalizationsEs();
+    case 'fr': return AppLocalizationsFr();
     case 'he': return AppLocalizationsHe();
   }
 

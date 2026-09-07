@@ -1,4 +1,5 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_button.dart';
 import 'package:align_pdf_ai/app/modules/scan_result/controller/scan_result_controller.dart';
@@ -20,17 +21,17 @@ class ScanResultView extends GetView<ScanResultController> {
               _buildHeader(),
               _buildSuccessIcon(),
               SizedBox(height: 2.6.h),
-              _buildTitle(),
+              _buildTitle(context),
               SizedBox(height: 1.6.h),
-              _buildDescription(),
+              _buildDescription(context),
               SizedBox(height: 1.8.h),
               _buildPdfCard(),
               SizedBox(height: 1.8.h),
-              _buildOpenButton(),
+              _buildOpenButton(context),
               SizedBox(height: 1.8.h),
-              _buildActionButtons(),
+              _buildActionButtons(context),
               SizedBox(height: 2.8.h),
-              _buildScanAnother(),
+              _buildScanAnother(context),
               SizedBox(height: 1.2.h),
             ],
           ),
@@ -65,18 +66,18 @@ class ScanResultView extends GetView<ScanResultController> {
     );
   }
 
-  Widget _buildTitle() {
+  Widget _buildTitle(BuildContext context) {
     return AppTextWidget(
-      text: 'Your PDF is ready.',
+      text: context.l10n.yourPdfIsReady,
       textAlign: TextAlign.center,
       fontSize: 22,
       fontWeight: FontWeight.w700,
     );
   }
 
-  Widget _buildDescription() {
+  Widget _buildDescription(BuildContext context) {
     return AppTextWidget(
-      text: 'Your document has been successfully\ndigitized and optimized.',
+      text: context.l10n.documentSuccessfullyDigitized,
       textAlign: TextAlign.center,
       fontSize: 14,
       height: 1.4,
@@ -166,12 +167,14 @@ class ScanResultView extends GetView<ScanResultController> {
     );
   }
 
-  Widget _buildOpenButton() {
+  Widget _buildOpenButton(BuildContext context) {
     return Obx(
       () => SizedBox(
         width: double.infinity,
         child: AppButtonWidget(
-          text: controller.isOpening.value ? 'Opening...' : 'Open PDF',
+          text: controller.isOpening.value
+              ? context.l10n.opening
+              : context.l10n.openPdf,
           height: 5.7.h,
           onTap: controller.isOpening.value ? null : controller.openPdf,
         ),
@@ -179,13 +182,13 @@ class ScanResultView extends GetView<ScanResultController> {
     );
   }
 
-  Widget _buildActionButtons() {
+  Widget _buildActionButtons(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: _buildOutlinedAction(
             icon: Icons.share_outlined,
-            text: 'Share PDF',
+            text: context.l10n.sharePdf,
             onTap: controller.sharePdf,
           ),
         ),
@@ -193,7 +196,7 @@ class ScanResultView extends GetView<ScanResultController> {
         Expanded(
           child: _buildOutlinedAction(
             icon: Icons.download_outlined,
-            text: 'Save to Device',
+            text: context.l10n.saveToDevice,
             onTap: controller.savePdf,
           ),
         ),
@@ -224,7 +227,7 @@ class ScanResultView extends GetView<ScanResultController> {
     );
   }
 
-  Widget _buildScanAnother() {
+  Widget _buildScanAnother(BuildContext context) {
     return TextButton.icon(
       onPressed: controller.scanAnotherDocument,
       icon: Icon(
@@ -233,7 +236,7 @@ class ScanResultView extends GetView<ScanResultController> {
         color: const Color(0xFFC1121F),
       ),
       label: Text(
-        'Scan Another Document',
+        context.l10n.scanAnotherDocument,
         style: TextStyle(fontSize: 14.sp, color: const Color(0xFFC1121F)),
       ),
     );
