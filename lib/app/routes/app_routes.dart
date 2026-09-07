@@ -11,6 +11,8 @@ abstract class Routes {
   static const SCAN_PREVIEW = _Paths.SCAN_PREVIEW;
   static const EXTRACT_TEXT = _Paths.EXTRACT_TEXT;
   static const PDF_RESULT = _Paths.PDF_RESULT;
+  static const SETTING = _Paths.SETTING;
+  static const HISTORY = _Paths.HISTORY;
 }
 
 abstract class _Paths {
@@ -22,4 +24,6 @@ abstract class _Paths {
   static const SCAN_PREVIEW = '/scan-preview';
   static const EXTRACT_TEXT = '/extract-text';
   static const PDF_RESULT = '/pdf-resut';
+  static const SETTING = '/setting';
+  static const HISTORY = '/history';
 }

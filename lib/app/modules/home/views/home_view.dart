@@ -6,8 +6,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../controllers/home_controller.dart';
 import '/app/core/widgets/app_text_widget.dart';
+import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -16,7 +16,6 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -30,15 +29,6 @@ class HomeView extends GetView<HomeController> {
               ),
               child: Row(
                 children: [
-                  GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: () {},
-                    child: SizedBox(
-                      width: 8.w,
-                      height: 8.w,
-                      child: Center(child: Icon(Icons.menu, size: 8.1.w)),
-                    ),
-                  ),
                   Gap(3.w),
                   Expanded(
                     child: AppTextWidget(
@@ -50,7 +40,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                   GestureDetector(
                     behavior: HitTestBehavior.opaque,
-                    onTap: () {},
+                    onTap: () => Get.toNamed(Routes.SETTING),
                     child: Icon(
                       Icons.settings,
                       size: 8.4.w,
@@ -106,7 +96,7 @@ class HomeView extends GetView<HomeController> {
                               width: 11.w,
                               height: 11.w,
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.22),
+                                color: Colors.white.withValues(alpha: 0.22),
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
@@ -148,7 +138,7 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () => Get.toNamed(Routes.HISTORY),
                           child: AppTextWidget(
                             text: 'View all',
                             fontSize: 17,
@@ -160,22 +150,54 @@ class HomeView extends GetView<HomeController> {
                     ),
                     Gap(2.2.h),
                     Expanded(
-                      child: ListView.separated(
-                        itemCount: controller.documents.length,
-                        separatorBuilder: (context, index) {
-                          return Gap(1.h);
-                        },
-                        itemBuilder: (context, index) {
-                          final document = controller.documents[index];
-
-                          return HistoryCard(
-                            title: document['title'] ?? '',
-                            pages: document['pages'] ?? '',
-                            date: document['date'] ?? '',
+                      child: Obx(() {
+                        if (controller.documents.isEmpty) {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.folder_open_outlined,
+                                  size: 48,
+                                  color: AppColors.primary.withValues(
+                                    alpha: 0.65,
+                                  ),
+                                ),
+                                Gap(1.5.h),
+                                AppTextWidget(
+                                  text: 'No recent documents',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                Gap(0.6.h),
+                                AppTextWidget(
+                                  text: 'Create your first PDF to see it here',
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                ),
+                              ],
+                            ),
                           );
-                        },
-                      ),
+                        }
+
+                        return ListView.separated(
+                          itemCount: controller.documents.length,
+                          separatorBuilder: (_, _) => Gap(1.h),
+                          itemBuilder: (_, index) {
+                            final item = controller.documents[index];
+
+                            return HistoryCard(
+                              title: item.title,
+                              pages: '${item.pages} pages',
+                              date: controller.formatDate(item.createdAt),
+                              onTap: () => controller.openPdf(item),
+                              onMoreTap: () => controller.showActions(item),
+                            );
+                          },
+                        );
+                      }),
                     ),
+
                     Gap(3.h),
                   ],
                 ),

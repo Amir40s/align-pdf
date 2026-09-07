@@ -617,9 +617,11 @@
 import 'dart:io';
 import 'dart:isolate';
 
+import 'package:align_pdf_ai/app/core/services/history_storage_service.dart';
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_snackbar.dart';
 import 'package:align_pdf_ai/app/core/widgets/debug_logs.dart';
+import 'package:align_pdf_ai/app/modules/home/controllers/home_controller.dart';
 import 'package:align_pdf_ai/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -1200,21 +1202,14 @@ class ScanPreviewController extends GetxController {
     }
   }
 
-  // ============================================================
-  // GENERATE PDF
-  // ============================================================
-
   Future<void> done() async {
-    if (isProcessing.value) {
-      return;
-    }
-
-    if (scannedPages.isEmpty) {
-      AppSnackbar.warning(
-        'No Pages',
-        'Please add at least one page before creating the PDF.',
-      );
-
+    if (isProcessing.value || scannedPages.isEmpty) {
+      if (scannedPages.isEmpty) {
+        AppSnackbar.warning(
+          'No Pages',
+          'Please add at least one page before creating the PDF.',
+        );
+      }
       return;
     }
 
@@ -1225,11 +1220,6 @@ class ScanPreviewController extends GetxController {
           .map((page) => page.displayImagePath)
           .toList();
 
-      debugLog(
-        '========== PDF GENERATION ==========\n'
-        'Pages: ${imagePaths.length}',
-      );
-
       final directory = await getApplicationDocumentsDirectory();
 
       final pdfPath = await Isolate.run(
@@ -1238,13 +1228,25 @@ class ScanPreviewController extends GetxController {
 
       if (pdfPath == null) {
         AppSnackbar.error('PDF Error', 'Unable to create the PDF.');
-
         return;
       }
 
-      final fileName = 'align_pdf_${DateTime.now().millisecondsSinceEpoch}.pdf';
+      final now = DateTime.now();
 
-      debugLog('PDF generated: $pdfPath');
+      final fileName = 'align_pdf_${now.millisecondsSinceEpoch}.pdf';
+
+      final title = 'Align PDF ${_formatDate(now)}';
+
+      await HistoryStorageService.instance.addHistory(
+        id: now.millisecondsSinceEpoch.toString(),
+        title: title,
+        filePath: pdfPath,
+        pages: imagePaths.length,
+        createdAt: now,
+      );
+      if (Get.isRegistered<HomeController>()) {
+        Get.find<HomeController>().loadLatestDocuments();
+      }
 
       Get.offNamed(
         Routes.PDF_RESULT,
@@ -1256,7 +1258,6 @@ class ScanPreviewController extends GetxController {
       );
     } catch (e, stackTrace) {
       debugLog(e.toString());
-
       debugLog(stackTrace.toString());
 
       AppSnackbar.error('PDF Error', 'Unable to create the PDF.');
@@ -1264,6 +1265,71 @@ class ScanPreviewController extends GetxController {
       isProcessing.value = false;
     }
   }
+
+  String _formatDate(DateTime date) {
+    return '${date.day}/${date.month}/${date.year}';
+  }
+
+  // Future<void> done() async {
+  //   if (isProcessing.value) {
+  //     return;
+  //   }
+
+  //   if (scannedPages.isEmpty) {
+  //     AppSnackbar.warning(
+  //       'No Pages',
+  //       'Please add at least one page before creating the PDF.',
+  //     );
+
+  //     return;
+  //   }
+
+  //   try {
+  //     isProcessing.value = true;
+
+  //     final imagePaths = scannedPages
+  //         .map((page) => page.displayImagePath)
+  //         .toList();
+
+  //     debugLog(
+  //       '========== PDF GENERATION ==========\n'
+  //       'Pages: ${imagePaths.length}',
+  //     );
+
+  //     final directory = await getApplicationDocumentsDirectory();
+
+  //     final pdfPath = await Isolate.run(
+  //       () => generatePdfInIsolate(imagePaths, directory.path),
+  //     );
+
+  //     if (pdfPath == null) {
+  //       AppSnackbar.error('PDF Error', 'Unable to create the PDF.');
+
+  //       return;
+  //     }
+
+  //     final fileName = 'align_pdf_${DateTime.now().millisecondsSinceEpoch}.pdf';
+
+  //     debugLog('PDF generated: $pdfPath');
+
+  //     Get.offNamed(
+  //       Routes.PDF_RESULT,
+  //       arguments: {
+  //         'pdfPath': pdfPath,
+  //         'pages': imagePaths.length,
+  //         'fileName': fileName,
+  //       },
+  //     );
+  //   } catch (e, stackTrace) {
+  //     debugLog(e.toString());
+
+  //     debugLog(stackTrace.toString());
+
+  //     AppSnackbar.error('PDF Error', 'Unable to create the PDF.');
+  //   } finally {
+  //     isProcessing.value = false;
+  //   }
+  // }
 
   // ============================================================
   // SAVE IMAGE

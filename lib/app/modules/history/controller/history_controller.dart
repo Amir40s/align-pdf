@@ -1,111 +1,55 @@
 import 'dart:io';
 
 import 'package:align_pdf_ai/app/core/services/history_storage_service.dart';
+import 'package:align_pdf_ai/app/core/widgets/app_snackbar.dart';
 import 'package:align_pdf_ai/app/modules/history/model/history_model.dart';
+import 'package:align_pdf_ai/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:share_plus/share_plus.dart';
 
-class HomeController extends GetxController {
-  final documents = <HistoryItem>[].obs;
+class HistoryController extends GetxController {
+  final history = <HistoryItem>[].obs;
 
   @override
   void onInit() {
     super.onInit();
-    loadLatestDocuments();
+    loadHistory();
   }
 
-  void loadLatestDocuments() {
+  void loadHistory() {
     final data = HistoryStorageService.instance.getHistory();
-
-    documents.assignAll(data.map(HistoryItem.fromMap).take(5).toList());
-  }
-
-  String formatDate(DateTime date) {
-    final now = DateTime.now();
-
-    if (date.year == now.year &&
-        date.month == now.month &&
-        date.day == now.day) {
-      return 'Today';
-    }
-
-    final yesterday = now.subtract(const Duration(days: 1));
-
-    if (date.year == yesterday.year &&
-        date.month == yesterday.month &&
-        date.day == yesterday.day) {
-      return 'Yesterday';
-    }
-
-    return '${date.day}/${date.month}/${date.year}';
+    history.assignAll(data.map(HistoryItem.fromMap).toList());
   }
 
   Future<void> openPdf(HistoryItem item) async {
     final file = File(item.filePath);
-
     if (!await file.exists()) {
-      Get.snackbar('File Not Found', 'This PDF is no longer available.');
+      AppSnackbar.warning('File Not Found', 'This PDF is no longer available.');
       return;
     }
-
     final result = await OpenFilex.open(item.filePath, type: 'application/pdf');
-
     if (result.type != ResultType.done) {
-      Get.snackbar('Unable to Open', result.message);
+      AppSnackbar.error(
+        'Unable to Open',
+        result.message.isNotEmpty
+            ? result.message
+            : 'This PDF could not be opened.',
+      );
     }
   }
 
   Future<void> sharePdf(HistoryItem item) async {
     final file = File(item.filePath);
-
     if (!await file.exists()) {
-      Get.snackbar('File Not Found', 'This PDF is no longer available.');
+      AppSnackbar.error('File Not Found', 'This PDF is no longer available.');
       return;
     }
 
     await SharePlus.instance.share(
       ShareParams(files: [XFile(item.filePath)], text: item.title),
     );
-  }
-
-  Future<void> renamePdf(HistoryItem item) async {
-    final textController = TextEditingController(text: item.title);
-
-    final title = await Get.dialog<String>(
-      AlertDialog(
-        title: const Text('Rename PDF'),
-        content: TextField(
-          controller: textController,
-          autofocus: true,
-          decoration: const InputDecoration(hintText: 'PDF name'),
-        ),
-        actions: [
-          TextButton(onPressed: () => Get.back(), child: const Text('Cancel')),
-          TextButton(
-            onPressed: () {
-              final value = textController.text.trim();
-
-              if (value.isNotEmpty) {
-                Get.back(result: value);
-              }
-            },
-            child: const Text('Save'),
-          ),
-        ],
-      ),
-    );
-
-    textController.dispose();
-
-    if (title == null || title.isEmpty) {
-      return;
-    }
-
-    await HistoryStorageService.instance.renameHistory(item.id, title);
-
-    loadLatestDocuments();
   }
 
   Future<void> deletePdf(HistoryItem item) async {
@@ -129,23 +73,23 @@ class HomeController extends GetxController {
     if (confirmed != true) {
       return;
     }
-
     final file = File(item.filePath);
-
     if (await file.exists()) {
       await file.delete();
     }
-
     await HistoryStorageService.instance.deleteHistory(item.id);
 
-    loadLatestDocuments();
+    loadHistory();
+    if (Get.isRegistered<HomeController>()) {
+      Get.find<HomeController>().loadLatestDocuments();
+    }
   }
 
   void showActions(HistoryItem item) {
     Get.bottomSheet(
       SafeArea(
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
@@ -153,6 +97,15 @@ class HomeController extends GetxController {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              const SizedBox(height: 20),
               ListTile(
                 leading: const Icon(Icons.open_in_new_rounded),
                 title: const Text('Open PDF'),
@@ -169,14 +122,7 @@ class HomeController extends GetxController {
                   sharePdf(item);
                 },
               ),
-              ListTile(
-                leading: const Icon(Icons.edit_outlined),
-                title: const Text('Rename'),
-                onTap: () {
-                  Get.back();
-                  renamePdf(item);
-                },
-              ),
+
               ListTile(
                 leading: const Icon(Icons.delete_outline_rounded),
                 title: const Text('Delete'),
@@ -189,6 +135,27 @@ class HomeController extends GetxController {
           ),
         ),
       ),
+      backgroundColor: Colors.transparent,
     );
+  }
+
+  String formatDate(DateTime date) {
+    final now = DateTime.now();
+
+    if (date.year == now.year &&
+        date.month == now.month &&
+        date.day == now.day) {
+      return 'Today';
+    }
+
+    final yesterday = now.subtract(const Duration(days: 1));
+
+    if (date.year == yesterday.year &&
+        date.month == yesterday.month &&
+        date.day == yesterday.day) {
+      return 'Yesterday';
+    }
+
+    return '${date.day}/${date.month}/${date.year}';
   }
 }
