@@ -10,6 +10,7 @@ abstract class Routes {
   static const SPLASH = _Paths.SPLASH;
   static const SCAN_PREVIEW = _Paths.SCAN_PREVIEW;
   static const EXTRACT_TEXT = _Paths.EXTRACT_TEXT;
+  static const PDF_RESULT = _Paths.PDF_RESULT;
 }
 
 abstract class _Paths {
@@ -20,4 +21,5 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const SCAN_PREVIEW = '/scan-preview';
   static const EXTRACT_TEXT = '/extract-text';
+  static const PDF_RESULT = '/pdf-resut';
 }

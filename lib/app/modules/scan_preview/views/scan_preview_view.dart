@@ -2,6 +2,7 @@ import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_appbar.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_button.dart';
+import 'package:align_pdf_ai/app/modules/scan_document/controllers/scan_document_controller.dart';
 import 'package:align_pdf_ai/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -17,75 +18,93 @@ import 'widget/preview_thumbnail_item.dart';
 
 class ScanPreviewView extends GetView<ScanPreviewController> {
   const ScanPreviewView({super.key});
+  void _handleBack() {
+    controller.clearPreviewSession();
+    if (Get.isRegistered<ScanDocumentController>()) {
+      Get.find<ScanDocumentController>().clearScanSession();
+    }
+    Get.until((route) => route.settings.name == Routes.HOME);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: "Scan Preview",
-        action: Obx(
-          () => Padding(
-            padding: EdgeInsets.only(right: 4.w),
-            child: Center(
-              child: AppTextWidget(
-                text: '${controller.scannedPages.length} Pages',
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: AppColors.primary,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        _handleBack();
+      },
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: "Scan Preview",
+          onBack: _handleBack,
+          action: Obx(
+            () => Padding(
+              padding: EdgeInsets.only(right: 4.w),
+              child: Center(
+                child: AppTextWidget(
+                  text: '${controller.scannedPages.length} Pages',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primary,
+                ),
               ),
             ),
           ),
         ),
-      ),
-      body: Obx(() {
-        if (controller.scannedPages.isEmpty) {
-          return const PreviewEmptyState();
-        }
+        body: Obx(() {
+          if (controller.scannedPages.isEmpty) {
+            return const PreviewEmptyState();
+          }
 
-        return Column(
-          children: [
-            Expanded(flex: 5, child: PreviewImageCard(controller: controller)),
-            Gap(2.h),
-            SafeArea(
-              top: false,
-              child: Container(
-                padding: EdgeInsets.fromLTRB(4.w, 1.5.h, 4.w, 1.5.h),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.08),
-                      blurRadius: 15,
-                      offset: const Offset(0, -5),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    _buildActionsRow(),
-                    Gap(1.h),
-                    Divider(
-                      height: 1,
-                      thickness: 1,
-                      color: Colors.grey.shade200,
-                    ),
-                    Gap(1.h),
-                    _buildThumbnailsSection(),
-                    Gap(1.h),
-                    Divider(
-                      height: 1,
-                      thickness: 1,
-                      color: Colors.grey.shade200,
-                    ),
-                    Gap(1.h),
-                    _buildBottomButtons(),
-                  ],
+          return Column(
+            children: [
+              Expanded(
+                flex: 5,
+                child: PreviewImageCard(controller: controller),
+              ),
+              Gap(2.h),
+              SafeArea(
+                top: false,
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(4.w, 1.5.h, 4.w, 1.5.h),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.08),
+                        blurRadius: 15,
+                        offset: const Offset(0, -5),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      _buildActionsRow(),
+                      Gap(1.h),
+                      Divider(
+                        height: 1,
+                        thickness: 1,
+                        color: Colors.grey.shade200,
+                      ),
+                      Gap(1.h),
+                      _buildThumbnailsSection(),
+                      Gap(1.h),
+                      Divider(
+                        height: 1,
+                        thickness: 1,
+                        color: Colors.grey.shade200,
+                      ),
+                      Gap(1.h),
+                      _buildBottomButtons(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        );
-      }),
+            ],
+          );
+        }),
+      ),
     );
   }
 
@@ -258,7 +277,7 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
         Gap(3.w),
         Expanded(
           child: AppButtonWidget(
-            text: "Create PDF",
+            text: "Done",
             height: 5.7.h,
             onTap: () async => await controller.done(),
           ),

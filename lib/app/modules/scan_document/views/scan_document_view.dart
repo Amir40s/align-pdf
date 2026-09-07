@@ -33,7 +33,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
             children: [
               _buildCamera(),
               Positioned.fill(
-                child: Container(color: Colors.black.withOpacity(0.18)),
+                child: Container(color: Colors.black.withValues(alpha: 0.18)),
               ),
               Positioned(
                 top: 3.h,
@@ -44,9 +44,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                   children: [
                     _circleButton(
                       icon: Icons.close,
-                      onTap: () {
-                        Get.back();
-                      },
+                      onTap: controller.closeScanner,
                     ),
 
                     Obx(
@@ -56,7 +54,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                           height: 5.6.h,
                           padding: EdgeInsets.symmetric(horizontal: 5.w),
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.55),
+                            color: Colors.black.withValues(alpha: 0.55),
                             borderRadius: BorderRadius.circular(10.w),
                           ),
                           child: Row(
@@ -142,7 +140,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                         borderRadius: BorderRadius.circular(10.w),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.18),
+                            color: Colors.black.withValues(alpha: 0.18),
                             blurRadius: 15,
                             offset: const Offset(0, 5),
                           ),
@@ -176,7 +174,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                 child: Container(
                   height: 21.h,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.28),
+                    color: Colors.black.withValues(alpha: 0.28),
                   ),
                   child: Column(
                     children: [
@@ -187,7 +185,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                           vertical: 1.1.h,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.55),
+                          color: Colors.black.withValues(alpha: 0.55),
                           borderRadius: BorderRadius.circular(10.w),
                         ),
                         child: Row(
@@ -240,7 +238,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
               if (controller.isProcessing.value)
                 Positioned.fill(
                   child: Container(
-                    color: Colors.black.withOpacity(0.45),
+                    color: Colors.black.withValues(alpha: 0.45),
                     child: Center(
                       child: Container(
                         padding: EdgeInsets.symmetric(
@@ -310,7 +308,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
         width: 13.w,
         height: 13.w,
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.55),
+          color: Colors.black.withValues(alpha: 0.55),
           shape: BoxShape.circle,
         ),
         child: Center(
@@ -363,7 +361,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
             shape: BoxShape.circle,
             color: AppColors.primary,
             border: Border.all(
-              color: Colors.white.withOpacity(0.65),
+              color: Colors.white.withValues(alpha: 0.65),
               width: 0.7.w,
             ),
           ),

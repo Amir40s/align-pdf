@@ -1,3 +1,5 @@
+import 'package:align_pdf_ai/app/modules/scan_result/binding/scan_result_binding.dart';
+import 'package:align_pdf_ai/app/modules/scan_result/view/scan_result_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/extract_text/bindings/extract_text_binding.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.EXTRACT_TEXT,
       page: () => const ExtractTextView(),
       binding: ExtractTextBinding(),
+    ),
+    GetPage(
+      name: Routes.PDF_RESULT,
+      page: () => const ScanResultView(),
+      binding: ScanResultBinding(),
     ),
   ];
 }
