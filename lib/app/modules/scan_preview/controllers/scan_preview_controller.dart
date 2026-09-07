@@ -619,6 +619,7 @@ import 'dart:isolate';
 
 import 'package:align_pdf_ai/app/core/services/history_storage_service.dart';
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_getx_helper.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_snackbar.dart';
 import 'package:align_pdf_ai/app/core/widgets/debug_logs.dart';
 import 'package:align_pdf_ai/app/modules/home/controllers/home_controller.dart';
@@ -671,17 +672,9 @@ class ScannedPage {
 }
 
 class ScanPreviewController extends GetxController {
-  // ============================================================
-  // OCR
-  // ============================================================
-
   final TextRecognizer textRecognizer = TextRecognizer(
     script: TextRecognitionScript.latin,
   );
-
-  // ============================================================
-  // STATE
-  // ============================================================
 
   final RxList<ScannedPage> scannedPages = <ScannedPage>[].obs;
 
@@ -692,10 +685,6 @@ class ScanPreviewController extends GetxController {
   final RxBool isEnhancing = false.obs;
   final RxBool isCropping = false.obs;
   final RxBool isRotating = false.obs;
-
-  // ============================================================
-  // CURRENT PAGE
-  // ============================================================
 
   ScannedPage? get currentPage {
     if (scannedPages.isEmpty) {
@@ -709,20 +698,12 @@ class ScanPreviewController extends GetxController {
     return scannedPages[currentPageIndex.value];
   }
 
-  // ============================================================
-  // LIFECYCLE
-  // ============================================================
-
   @override
   void onInit() {
     super.onInit();
 
     _loadArguments();
   }
-
-  // ============================================================
-  // LOAD INITIAL SCANNED IMAGES
-  // ============================================================
 
   void _loadArguments() {
     final arguments = Get.arguments;
@@ -834,7 +815,7 @@ class ScanPreviewController extends GetxController {
       final file = File(imagePath);
 
       if (!await file.exists()) {
-        AppSnackbar.error('OCR Error', 'Document image could not be found.');
+        AppSnackbar.error(getl10n.ocrError, getl10n.documentImageNotFound);
 
         return false;
       }
@@ -861,8 +842,8 @@ class ScanPreviewController extends GetxController {
 
       if (text.isEmpty) {
         AppSnackbar.warning(
-          'No Text Found',
-          'We could not find readable text in this document.',
+          getl10n.noTextFound,
+          getl10n.couldNotFindReadableText,
         );
 
         return false;
@@ -872,10 +853,7 @@ class ScanPreviewController extends GetxController {
     } catch (e) {
       debugLog('OCR error: $e');
 
-      AppSnackbar.error(
-        'Text Recognition Error',
-        'Unable to extract text from this document.',
-      );
+      AppSnackbar.error(getl10n.textRecognitionError, getl10n.unableToReadText);
 
       return false;
     } finally {
@@ -937,11 +915,14 @@ class ScanPreviewController extends GetxController {
 
       await extractTextForPage(currentPageIndex.value);
 
-      AppSnackbar.success('Crop Complete', 'Document cropped successfully.');
+      AppSnackbar.success(
+        getl10n.cropComplete,
+        getl10n.documentCroppedSuccessfully,
+      );
     } catch (e) {
       debugLog('Crop error: $e');
 
-      AppSnackbar.error('Crop Error', 'Unable to crop this document.');
+      AppSnackbar.error(getl10n.cropError, getl10n.unableToCropDocument);
     } finally {
       isCropping.value = false;
       isProcessing.value = false;
@@ -989,11 +970,11 @@ class ScanPreviewController extends GetxController {
 
       await extractTextForPage(currentPageIndex.value);
 
-      AppSnackbar.success('Rotated', 'Document rotated successfully.');
+      AppSnackbar.success(getl10n.rotated, getl10n.documentRotatedSuccessfully);
     } catch (e) {
       debugLog('Rotate error: $e');
 
-      AppSnackbar.error('Rotate Error', 'Unable to rotate this document.');
+      AppSnackbar.error(getl10n.rotateError, getl10n.unableToRotateDocument);
     } finally {
       isRotating.value = false;
       isProcessing.value = false;
@@ -1049,13 +1030,13 @@ class ScanPreviewController extends GetxController {
       await extractTextForPage(currentPageIndex.value);
 
       AppSnackbar.success(
-        'Enhanced',
-        'Document enhanced while preserving colors.',
+        getl10n.enhance,
+        getl10n.documentEnhancedPreservingColors,
       );
     } catch (e) {
       debugLog('Enhance error: $e');
 
-      AppSnackbar.error('Enhance Error', 'Unable to enhance this document.');
+      AppSnackbar.error(getl10n.enhanceError, getl10n.unableToEnhanceDocument);
     } finally {
       isEnhancing.value = false;
       isProcessing.value = false;
@@ -1118,13 +1099,14 @@ class ScanPreviewController extends GetxController {
       );
 
       AppSnackbar.success(
-        'Page Deleted',
-        'Page ${index + 1} has been removed.',
+        getl10n.pageDeleted,
+        getl10n.pageRemoved(index + 1),
+        // 'Page ${index + 1} has been removed.',
       );
     } catch (e) {
       debugLog('Delete page error: $e');
 
-      AppSnackbar.error('Delete Error', 'Unable to delete this page.');
+      AppSnackbar.error(getl10n.deleteError, getl10n.unableToDeletePage);
     }
   }
 
@@ -1269,71 +1251,6 @@ class ScanPreviewController extends GetxController {
   String _formatDate(DateTime date) {
     return '${date.day}/${date.month}/${date.year}';
   }
-
-  // Future<void> done() async {
-  //   if (isProcessing.value) {
-  //     return;
-  //   }
-
-  //   if (scannedPages.isEmpty) {
-  //     AppSnackbar.warning(
-  //       'No Pages',
-  //       'Please add at least one page before creating the PDF.',
-  //     );
-
-  //     return;
-  //   }
-
-  //   try {
-  //     isProcessing.value = true;
-
-  //     final imagePaths = scannedPages
-  //         .map((page) => page.displayImagePath)
-  //         .toList();
-
-  //     debugLog(
-  //       '========== PDF GENERATION ==========\n'
-  //       'Pages: ${imagePaths.length}',
-  //     );
-
-  //     final directory = await getApplicationDocumentsDirectory();
-
-  //     final pdfPath = await Isolate.run(
-  //       () => generatePdfInIsolate(imagePaths, directory.path),
-  //     );
-
-  //     if (pdfPath == null) {
-  //       AppSnackbar.error('PDF Error', 'Unable to create the PDF.');
-
-  //       return;
-  //     }
-
-  //     final fileName = 'align_pdf_${DateTime.now().millisecondsSinceEpoch}.pdf';
-
-  //     debugLog('PDF generated: $pdfPath');
-
-  //     Get.offNamed(
-  //       Routes.PDF_RESULT,
-  //       arguments: {
-  //         'pdfPath': pdfPath,
-  //         'pages': imagePaths.length,
-  //         'fileName': fileName,
-  //       },
-  //     );
-  //   } catch (e, stackTrace) {
-  //     debugLog(e.toString());
-
-  //     debugLog(stackTrace.toString());
-
-  //     AppSnackbar.error('PDF Error', 'Unable to create the PDF.');
-  //   } finally {
-  //     isProcessing.value = false;
-  //   }
-  // }
-
-  // ============================================================
-  // SAVE IMAGE
-  // ============================================================
 
   Future<String> _saveImage(img.Image image, String prefix) async {
     final directory = await getApplicationDocumentsDirectory();

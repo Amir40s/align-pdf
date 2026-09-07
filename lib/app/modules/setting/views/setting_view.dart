@@ -1,4 +1,5 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_appbar.dart';
 import 'package:align_pdf_ai/app/modules/setting/controller/setting_controller.dart';
@@ -12,43 +13,43 @@ class SettingsView extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Setting'),
+      appBar: CustomAppBar(title: context.l10n.setting),
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
         children: [
           _PrivateTile(
             icon: Icons.language_rounded,
-            title: 'Language',
-            subtitle: 'Change app language',
+            title: context.l10n.language,
+            subtitle: context.l10n.changeAppLanguage,
             onTap: controller.showLanguageSheet,
           ),
           SizedBox(height: 1.5.h),
           _PrivateTile(
             icon: Icons.privacy_tip_outlined,
-            title: 'Privacy Policy',
-            subtitle: 'Read our privacy policy',
+            title: context.l10n.privacyPolicy,
+            subtitle: context.l10n.readOurPrivacyPolicy,
             onTap: () =>
                 controller.openUrl('https://yourdomain.com/privacy-policy'),
           ),
           SizedBox(height: 1.5.h),
           _PrivateTile(
             icon: Icons.description_outlined,
-            title: 'Terms of Service',
-            subtitle: 'Read our terms of service',
+            title: context.l10n.termsOfService,
+            subtitle: context.l10n.readOurTermsOfService,
             onTap: () => controller.openUrl('https://yourdomain.com/terms'),
           ),
           SizedBox(height: 1.5.h),
           _PrivateTile(
             icon: Icons.help_outline_rounded,
-            title: 'Help & Support',
-            subtitle: 'Get help with Align PDF AI',
+            title: context.l10n.helpSupport,
+            subtitle: context.l10n.getHelpWithAlignPdfAi,
             onTap: () => controller.openUrl('https://yourdomain.com/support'),
           ),
           SizedBox(height: 1.5.h),
           _PrivateTile(
             icon: Icons.star_outline_rounded,
-            title: 'Rate App',
-            subtitle: 'Share your feedback',
+            title: context.l10n.rateApp,
+            subtitle: context.l10n.shareYourFeedback,
             onTap: () => controller.openUrl(
               'https://play.google.com/store/apps/details?id=YOUR_PACKAGE',
             ),

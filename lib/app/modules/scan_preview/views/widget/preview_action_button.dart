@@ -34,14 +34,10 @@ class PreviewActionButton extends StatelessWidget {
               width: 11.w,
               height: 11.w,
               decoration: BoxDecoration(
-                color: activeColor.withOpacity(0.10),
+                color: activeColor.withValues(alpha: 0.10),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                icon,
-                size: 5.5.w,
-                color: activeColor,
-              ),
+              child: Icon(icon, size: 5.5.w, color: activeColor),
             ),
             Gap(0.6.h),
             AppTextWidget(

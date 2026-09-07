@@ -1,4 +1,5 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/modules/home/views/widget/history_card.dart';
 import 'package:align_pdf_ai/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -109,7 +110,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             Gap(1.5.h),
                             AppTextWidget(
-                              text: 'Scan Document',
+                              text: context.l10n.scanDocument,
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
                               color: Colors.white,
@@ -117,7 +118,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             Gap(0.8.h),
                             AppTextWidget(
-                              text: 'Capture a document with AI',
+                              text: context.l10n.captureDocumentWithAi,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),
@@ -132,7 +133,7 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         Expanded(
                           child: AppTextWidget(
-                            text: 'Recent Documents',
+                            text: context.l10n.recentDocuments,
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                           ),
@@ -140,7 +141,7 @@ class HomeView extends GetView<HomeController> {
                         GestureDetector(
                           onTap: () => Get.toNamed(Routes.HISTORY),
                           child: AppTextWidget(
-                            text: 'View all',
+                            text: context.l10n.viewAll,
                             fontSize: 17,
                             fontWeight: FontWeight.w500,
                             color: AppColors.primary,
@@ -165,13 +166,13 @@ class HomeView extends GetView<HomeController> {
                                 ),
                                 Gap(1.5.h),
                                 AppTextWidget(
-                                  text: 'No recent documents',
+                                  text: context.l10n.noRecentDocuments,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
                                 ),
                                 Gap(0.6.h),
                                 AppTextWidget(
-                                  text: 'Create your first PDF to see it here',
+                                  text: context.l10n.createFirstPdfToSeeItHere,
                                   fontSize: 14,
                                   color: Colors.grey,
                                 ),

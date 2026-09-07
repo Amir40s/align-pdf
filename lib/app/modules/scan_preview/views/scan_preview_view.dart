@@ -1,4 +1,5 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_appbar.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_button.dart';
@@ -36,14 +37,15 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
       },
       child: Scaffold(
         appBar: CustomAppBar(
-          title: "Scan Preview",
+          title: context.l10n.scanPreview,
           onBack: _handleBack,
           action: Obx(
             () => Padding(
               padding: EdgeInsets.only(right: 4.w),
               child: Center(
                 child: AppTextWidget(
-                  text: '${controller.scannedPages.length} Pages',
+                  text:
+                      '${controller.scannedPages.length} ${context.l10n.pages}',
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   color: AppColors.primary,
@@ -80,7 +82,7 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
                   ),
                   child: Column(
                     children: [
-                      _buildActionsRow(),
+                      _buildActionsRow(context),
                       Gap(1.h),
                       Divider(
                         height: 1,
@@ -88,7 +90,7 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
                         color: Colors.grey.shade200,
                       ),
                       Gap(1.h),
-                      _buildThumbnailsSection(),
+                      _buildThumbnailsSection(context),
                       Gap(1.h),
                       Divider(
                         height: 1,
@@ -96,7 +98,7 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
                         color: Colors.grey.shade200,
                       ),
                       Gap(1.h),
-                      _buildBottomButtons(),
+                      _buildBottomButtons(context),
                     ],
                   ),
                 ),
@@ -108,34 +110,34 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
     );
   }
 
-  Widget _buildActionsRow() {
+  Widget _buildActionsRow(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: PreviewActionButton(
             icon: Icons.crop_rounded,
-            title: 'Crop',
+            title: context.l10n.crop,
             onTap: () async => await controller.cropCurrentPage(),
           ),
         ),
         Expanded(
           child: PreviewActionButton(
             icon: Icons.rotate_right_rounded,
-            title: 'Rotate',
+            title: context.l10n.rotate,
             onTap: () async => await controller.rotateCurrentPage(),
           ),
         ),
         Expanded(
           child: PreviewActionButton(
             icon: Icons.auto_fix_high_rounded,
-            title: 'Enhance',
+            title: context.l10n.enhance,
             onTap: () async => await controller.enhanceCurrentPage(),
           ),
         ),
         Expanded(
           child: PreviewActionButton(
             icon: Icons.text_fields_rounded,
-            title: 'OCR',
+            title: context.l10n.ocr,
             onTap: () async {
               final page = controller.currentPage;
 
@@ -177,10 +179,11 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
         Expanded(
           child: PreviewActionButton(
             icon: Icons.delete_outline_rounded,
-            title: 'Delete',
+            title: context.l10n.delete,
             iconColor: Colors.red,
             onTap: () {
               DeleteConfirmationDialog.show(
+                context: context,
                 totalPages: controller.scannedPages.length,
                 onConfirm: () => controller.deleteCurrentPage(),
               );
@@ -191,7 +194,7 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
     );
   }
 
-  Widget _buildThumbnailsSection() {
+  Widget _buildThumbnailsSection(BuildContext context) {
     return Obx(() {
       if (controller.scannedPages.length == 1) {
         return const SizedBox.shrink();
@@ -208,13 +211,13 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppTextWidget(
-                    text: 'Pages',
+                    text: context.l10n.pages,
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
                   AppTextWidget(
-                    text: 'Tap a page to preview',
+                    text: context.l10n.tapPageToPreview,
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: Colors.black45,
@@ -257,14 +260,14 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
     });
   }
 
-  Widget _buildBottomButtons() {
+  Widget _buildBottomButtons(BuildContext context) {
     return Row(
       children: [
         Obx(() {
           if (controller.scannedPages.length == 1) {
             return Expanded(
               child: AppButtonWidget(
-                text: "Add Page",
+                text: context.l10n.addPage,
                 height: 5.7.h,
                 textColor: AppColors.primary,
                 borderColor: AppColors.primary,
@@ -277,7 +280,7 @@ class ScanPreviewView extends GetView<ScanPreviewController> {
         Gap(3.w),
         Expanded(
           child: AppButtonWidget(
-            text: "Done",
+            text: context.l10n.done,
             height: 5.7.h,
             onTap: () async => await controller.done(),
           ),

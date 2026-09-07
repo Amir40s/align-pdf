@@ -1,3 +1,4 @@
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_snackbar.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -5,9 +6,16 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class DeleteConfirmationDialog {
-  static void show({required int totalPages, required VoidCallback onConfirm}) {
+  static void show({
+    required int totalPages,
+    required VoidCallback onConfirm,
+    required BuildContext context,
+  }) {
     if (totalPages <= 1) {
-      AppSnackbar.warning('Cannot Delete', 'At least one page is required.');
+      AppSnackbar.warning(
+        context.l10n.cannotDelete,
+        context.l10n.atLeastOnePageRequired,
+      );
       return;
     }
 
@@ -15,13 +23,13 @@ class DeleteConfirmationDialog {
       AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.w)),
         title: AppTextWidget(
-          text: 'Delete Page?',
+          text: context.l10n.deletePageQuestion,
           fontSize: 18,
           fontWeight: FontWeight.w700,
           color: Colors.black,
         ),
         content: AppTextWidget(
-          text: 'Are you sure you want to remove this page?',
+          text: context.l10n.areYouSureDeletePdf,
           fontSize: 15,
           fontWeight: FontWeight.w400,
           color: Colors.black87,
@@ -30,7 +38,7 @@ class DeleteConfirmationDialog {
           TextButton(
             onPressed: () => Get.back(),
             child: AppTextWidget(
-              text: 'Cancel',
+              text: context.l10n.cancel,
               fontWeight: FontWeight.w600,
               color: Colors.black54,
             ),
@@ -41,7 +49,7 @@ class DeleteConfirmationDialog {
               onConfirm();
             },
             child: AppTextWidget(
-              text: 'Delete',
+              text: context.l10n.delete,
               fontWeight: FontWeight.w600,
               color: Colors.red,
             ),

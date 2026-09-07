@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:align_pdf_ai/app/modules/scan_preview/controllers/scan_preview_controller.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,7 @@ import 'package:sizer/sizer.dart';
 class PreviewImageCard extends StatelessWidget {
   final ScanPreviewController controller;
 
-  const PreviewImageCard({
-    super.key,
-    required this.controller,
-  });
+  const PreviewImageCard({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class PreviewImageCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(4.w),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.06),
+              color: Colors.black.withValues(alpha: 0.06),
               blurRadius: 18,
               offset: const Offset(0, 6),
             ),
@@ -80,11 +78,14 @@ class PreviewImageCard extends StatelessWidget {
                       vertical: 0.8.h,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.65),
+                      color: Colors.black.withValues(alpha: 0.65),
                       borderRadius: BorderRadius.circular(2.w),
                     ),
                     child: AppTextWidget(
-                      text: 'Page ${controller.currentPageIndex.value + 1}',
+                      text: context.l10n.pageNumber(
+                        controller.currentPageIndex.value + 1,
+                      ),
+                      // text: 'Page ${controller.currentPageIndex.value + 1}',
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -94,7 +95,7 @@ class PreviewImageCard extends StatelessWidget {
                 if (controller.isProcessing.value)
                   Positioned.fill(
                     child: Container(
-                      color: Colors.black.withOpacity(0.35),
+                      color: Colors.black.withValues(alpha: 0.35),
                       child: Center(
                         child: Container(
                           padding: EdgeInsets.symmetric(
@@ -118,7 +119,7 @@ class PreviewImageCard extends StatelessWidget {
                               ),
                               Gap(1.5.h),
                               AppTextWidget(
-                                text: 'Processing...',
+                                text: context.l10n.processing,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black,

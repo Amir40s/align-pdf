@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:align_pdf_ai/app/core/services/history_storage_service.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_getx_helper.dart';
+import 'package:align_pdf_ai/app/core/widgets/app_snackbar.dart';
 import 'package:align_pdf_ai/app/modules/history/model/history_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +30,7 @@ class HomeController extends GetxController {
     if (date.year == now.year &&
         date.month == now.month &&
         date.day == now.day) {
-      return 'Today';
+      return getl10n.today;
     }
 
     final yesterday = now.subtract(const Duration(days: 1));
@@ -36,7 +38,7 @@ class HomeController extends GetxController {
     if (date.year == yesterday.year &&
         date.month == yesterday.month &&
         date.day == yesterday.day) {
-      return 'Yesterday';
+      return getl10n.yesterday;
     }
 
     return '${date.day}/${date.month}/${date.year}';
@@ -46,14 +48,17 @@ class HomeController extends GetxController {
     final file = File(item.filePath);
 
     if (!await file.exists()) {
-      Get.snackbar('File Not Found', 'This PDF is no longer available.');
+      AppSnackbar.error(
+        getl10n.fileNotFound,
+        getl10n.thisPdfIsNoLongerAvailable,
+      );
       return;
     }
 
     final result = await OpenFilex.open(item.filePath, type: 'application/pdf');
 
     if (result.type != ResultType.done) {
-      Get.snackbar('Unable to Open', result.message);
+      AppSnackbar.error(getl10n.unableToOpen, result.message);
     }
   }
 
@@ -61,7 +66,10 @@ class HomeController extends GetxController {
     final file = File(item.filePath);
 
     if (!await file.exists()) {
-      Get.snackbar('File Not Found', 'This PDF is no longer available.');
+      AppSnackbar.error(
+        getl10n.fileNotFound,
+        getl10n.thisPdfIsNoLongerAvailable,
+      );
       return;
     }
 
@@ -70,57 +78,19 @@ class HomeController extends GetxController {
     );
   }
 
-  Future<void> renamePdf(HistoryItem item) async {
-    final textController = TextEditingController(text: item.title);
-
-    final title = await Get.dialog<String>(
-      AlertDialog(
-        title: const Text('Rename PDF'),
-        content: TextField(
-          controller: textController,
-          autofocus: true,
-          decoration: const InputDecoration(hintText: 'PDF name'),
-        ),
-        actions: [
-          TextButton(onPressed: () => Get.back(), child: const Text('Cancel')),
-          TextButton(
-            onPressed: () {
-              final value = textController.text.trim();
-
-              if (value.isNotEmpty) {
-                Get.back(result: value);
-              }
-            },
-            child: const Text('Save'),
-          ),
-        ],
-      ),
-    );
-
-    textController.dispose();
-
-    if (title == null || title.isEmpty) {
-      return;
-    }
-
-    await HistoryStorageService.instance.renameHistory(item.id, title);
-
-    loadLatestDocuments();
-  }
-
   Future<void> deletePdf(HistoryItem item) async {
     final confirmed = await Get.dialog<bool>(
       AlertDialog(
-        title: const Text('Delete PDF'),
-        content: const Text('Are you sure you want to delete this PDF?'),
+        title: Text(getl10n.deletePdf),
+        content: Text(getl10n.areYouSureDeletePdf),
         actions: [
           TextButton(
             onPressed: () => Get.back(result: false),
-            child: const Text('Cancel'),
+            child: Text(getl10n.cancel),
           ),
           TextButton(
             onPressed: () => Get.back(result: true),
-            child: const Text('Delete'),
+            child: Text(getl10n.delete),
           ),
         ],
       ),
@@ -155,7 +125,7 @@ class HomeController extends GetxController {
             children: [
               ListTile(
                 leading: const Icon(Icons.open_in_new_rounded),
-                title: const Text('Open PDF'),
+                title: Text(getl10n.openPdf),
                 onTap: () {
                   Get.back();
                   openPdf(item);
@@ -163,23 +133,16 @@ class HomeController extends GetxController {
               ),
               ListTile(
                 leading: const Icon(Icons.share_outlined),
-                title: const Text('Share'),
+                title: Text(getl10n.share),
                 onTap: () {
                   Get.back();
                   sharePdf(item);
                 },
               ),
-              ListTile(
-                leading: const Icon(Icons.edit_outlined),
-                title: const Text('Rename'),
-                onTap: () {
-                  Get.back();
-                  renamePdf(item);
-                },
-              ),
+
               ListTile(
                 leading: const Icon(Icons.delete_outline_rounded),
-                title: const Text('Delete'),
+                title: Text(getl10n.delete),
                 onTap: () {
                   Get.back();
                   deletePdf(item);

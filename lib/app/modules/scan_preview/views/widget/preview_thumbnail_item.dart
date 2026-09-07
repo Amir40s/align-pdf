@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:align_pdf_ai/app/modules/scan_preview/controllers/scan_preview_controller.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class PreviewThumbnailItem extends StatelessWidget {
                   vertical: 0.3.h,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.65),
+                  color: Colors.black.withValues(alpha: 0.65),
                   borderRadius: BorderRadius.circular(1.w),
                 ),
                 child: AppTextWidget(
@@ -82,10 +83,7 @@ class PreviewThumbnailItem extends StatelessWidget {
 class AddPageThumbnailButton extends StatelessWidget {
   final VoidCallback onTap;
 
-  const AddPageThumbnailButton({
-    super.key,
-    required this.onTap,
-  });
+  const AddPageThumbnailButton({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +95,7 @@ class AddPageThumbnailButton extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(2.5.w),
           border: Border.all(
-            color: AppColors.primary.withOpacity(0.4),
+            color: AppColors.primary.withValues(alpha: 0.4),
             width: 1.2,
           ),
         ),
@@ -108,7 +106,7 @@ class AddPageThumbnailButton extends StatelessWidget {
               width: 8.w,
               height: 8.w,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.10),
+                color: AppColors.primary.withValues(alpha: 0.10),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -119,7 +117,7 @@ class AddPageThumbnailButton extends StatelessWidget {
             ),
             Gap(0.6.h),
             AppTextWidget(
-              text: 'Add Page',
+              text: context.l10n.addPage,
               fontSize: 11,
               fontWeight: FontWeight.w600,
               color: AppColors.primary,

@@ -1,4 +1,5 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:align_pdf_ai/app/modules/scan_document/views/widget/scaning_frame.dart';
 import 'package:camera/camera.dart';
@@ -67,15 +68,15 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                               ),
                               Gap(2.w),
                               AppTextWidget(
-                                text: 'Flash',
+                                text: context.l10n.flash,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
                               ),
                               Gap(1.w),
                               AppTextWidget(
                                 text: controller.flashEnabled.value
-                                    ? 'On'
-                                    : 'Off',
+                                    ? context.l10n.on
+                                    : context.l10n.off,
                                 fontSize: 16,
                                 color: controller.flashEnabled.value
                                     ? AppColors.primary
@@ -97,7 +98,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                 child: Column(
                   children: [
                     AppTextWidget(
-                      text: 'Scan Document',
+                      text: context.l10n.scanDocument,
                       fontSize: 22,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
@@ -105,7 +106,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                     ),
                     Gap(1.h),
                     AppTextWidget(
-                      text: 'Place your document within the frame',
+                      text: context.l10n.placeDocumentWithinFrame,
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
                       color: Colors.white,
@@ -156,7 +157,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                           ),
                           Gap(2.w),
                           AppTextWidget(
-                            text: 'Document detected',
+                            text: context.l10n.documentDetected,
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
@@ -198,7 +199,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                             ),
                             Gap(2.w),
                             AppTextWidget(
-                              text: 'Keep steady and avoid shadows',
+                              text: context.l10n.keepSteadyAvoidShadows,
                               fontSize: 14,
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
@@ -212,7 +213,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                           Expanded(
                             child: _bottomAction(
                               icon: Icons.photo_library_outlined,
-                              title: 'Gallery',
+                              title: context.l10n.gallery,
                               onTap: () async {
                                 await controller.pickImageFromGallery();
                               },
@@ -222,7 +223,7 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                           Expanded(
                             child: _bottomAction(
                               icon: Icons.library_add_outlined,
-                              title: 'Multi-Page',
+                              title: context.l10n.multiPage,
                               onTap: () async {
                                 await controller.captureDocument();
                               },
@@ -262,14 +263,14 @@ class ScanDocumentView extends GetView<ScanDocumentController> {
                             ),
                             Gap(2.h),
                             AppTextWidget(
-                              text: 'Processing document...',
+                              text: context.l10n.processingDocument,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
                             ),
                             Gap(0.7.h),
                             AppTextWidget(
-                              text: 'Extracting text with AI',
+                              text: context.l10n.extractingTextWithAi,
                               fontSize: 13,
                               color: Colors.black54,
                             ),
