@@ -28,32 +28,36 @@ class SettingsView extends GetView<SettingsController> {
             icon: Icons.privacy_tip_outlined,
             title: context.l10n.privacyPolicy,
             subtitle: context.l10n.readOurPrivacyPolicy,
-            onTap: () =>
-                controller.openUrl('https://yourdomain.com/privacy-policy'),
+            onTap: () => controller.openUrl(
+              'https://align-pdf-legal.netlify.app/privacy-policy',
+            ),
           ),
           SizedBox(height: 1.5.h),
           _PrivateTile(
             icon: Icons.description_outlined,
             title: context.l10n.termsOfService,
             subtitle: context.l10n.readOurTermsOfService,
-            onTap: () => controller.openUrl('https://yourdomain.com/terms'),
+            onTap: () =>
+                controller.openUrl('https://align-pdf-legal.netlify.app/terms'),
           ),
           SizedBox(height: 1.5.h),
           _PrivateTile(
             icon: Icons.help_outline_rounded,
             title: context.l10n.helpSupport,
             subtitle: context.l10n.getHelpWithAlignPdfAi,
-            onTap: () => controller.openUrl('https://yourdomain.com/support'),
-          ),
-          SizedBox(height: 1.5.h),
-          _PrivateTile(
-            icon: Icons.star_outline_rounded,
-            title: context.l10n.rateApp,
-            subtitle: context.l10n.shareYourFeedback,
             onTap: () => controller.openUrl(
-              'https://play.google.com/store/apps/details?id=YOUR_PACKAGE',
+              'https://align-pdf-legal.netlify.app/contact',
             ),
           ),
+          SizedBox(height: 1.5.h),
+          // _PrivateTile(
+          //   icon: Icons.star_outline_rounded,
+          //   title: context.l10n.rateApp,
+          //   subtitle: context.l10n.shareYourFeedback,
+          //   onTap: () => controller.openUrl(
+          //     'https://play.google.com/store/apps/details?id=YOUR_PACKAGE',
+          //   ),
+          // ),
         ],
       ),
     );
