@@ -1,4 +1,5 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/modules/extract_text/controllers/extract_text_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,21 +21,21 @@ class RawTextCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildRawTextHeader(),
+          _buildRawTextHeader(context),
           Container(height: 1, color: const Color(0xFFF0ECEA)),
-          _buildTextContent(),
+          _buildTextContent(context),
         ],
       ),
     );
   }
 
-  Widget _buildRawTextHeader() {
+  Widget _buildRawTextHeader(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       child: Row(
         children: [
-          const Text(
-            'RAW TEXT',
+          Text(
+            context.l10n.rawText,
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
@@ -63,8 +64,8 @@ class RawTextCard extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: controller.cancelEditing,
-                  child: const Text(
-                    'Cancel',
+                  child: Text(
+                    context.l10n.cancel,
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
@@ -76,7 +77,7 @@ class RawTextCard extends StatelessWidget {
                 GestureDetector(
                   onTap: controller.finishEditing,
                   child: Text(
-                    'Done',
+                    context.l10n.done,
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -92,7 +93,7 @@ class RawTextCard extends StatelessWidget {
     );
   }
 
-  Widget _buildTextContent() {
+  Widget _buildTextContent(BuildContext context) {
     return Obx(() {
       if (controller.isEditing.value) {
         return Padding(
@@ -107,9 +108,9 @@ class RawTextCard extends StatelessWidget {
               height: 1.55,
               color: Color(0xFF292625),
             ),
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: 'Extracted text...',
+              hintText: context.l10n.extractingTextWithAi,
             ),
           ),
         );
@@ -117,15 +118,15 @@ class RawTextCard extends StatelessWidget {
 
       return Padding(
         padding: const EdgeInsets.fromLTRB(20, 22, 20, 26),
-        child: _buildFormattedText(controller.extractedText.value),
+        child: _buildFormattedText(controller.extractedText.value, context),
       );
     });
   }
 
-  Widget _buildFormattedText(String text) {
+  Widget _buildFormattedText(String text, BuildContext context) {
     if (text.trim().isEmpty) {
-      return const Text(
-        'No text found.',
+      return Text(
+        context.l10n.noTextFound,
         style: TextStyle(fontSize: 17, color: Colors.grey),
       );
     }

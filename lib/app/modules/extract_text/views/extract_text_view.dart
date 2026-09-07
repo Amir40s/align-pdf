@@ -1,4 +1,5 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
+import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_appbar.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_button.dart';
@@ -18,7 +19,7 @@ class ExtractTextView extends GetView<ExtractTextController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Extract Text',
+        title: context.l10n.extractText,
         action: Obx(
           () => IconButton(
             onPressed: controller.isCopying.value ? null : controller.copyText,
@@ -59,7 +60,7 @@ class ExtractTextView extends GetView<ExtractTextController> {
                         border: Border.all(color: const Color(0xFFE5E1DF)),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.025),
+                            color: Colors.black.withValues(alpha: 0.025),
                             blurRadius: 5,
                             offset: const Offset(0, 2),
                           ),
@@ -77,7 +78,7 @@ class ExtractTextView extends GetView<ExtractTextController> {
                           ),
                           Gap(1.w),
                           AppTextWidget(
-                            text: 'OCR Complete',
+                            text: context.l10n.ocrComplete,
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             color: const Color(0xFF624B46),
@@ -98,7 +99,7 @@ class ExtractTextView extends GetView<ExtractTextController> {
                                 Gap(1.2.w),
                                 AppTextWidget(
                                   fontSize: 15,
-                                  text: 'Searchable PDF',
+                                  text: context.l10n.searchablePdf,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.primary,
                                 ),
@@ -125,7 +126,9 @@ class ExtractTextView extends GetView<ExtractTextController> {
                           ? null
                           : controller.saveText,
                       height: 58,
-                      text: controller.isSaving.value ? '' : 'Save Text',
+                      text: controller.isSaving.value
+                          ? ''
+                          : context.l10n.saveText,
                       textColor: Colors.white,
                       color: AppColors.primary,
                       leading: controller.isSaving.value
@@ -150,7 +153,7 @@ class ExtractTextView extends GetView<ExtractTextController> {
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: AppTextWidget(
-                        text: 'Discard',
+                        text: context.l10n.discard,
                         fontSize: 17,
                         fontWeight: FontWeight.w500,
                         color: AppColors.primary,

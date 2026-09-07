@@ -63,7 +63,7 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         Flexible(
                           child: AppTextWidget(
-                            text: 'Good morning',
+                            text: controller.greeting,
                             fontSize: 22,
                             fontWeight: FontWeight.w800,
                             height: 1.05,

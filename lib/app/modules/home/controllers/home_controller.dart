@@ -24,6 +24,19 @@ class HomeController extends GetxController {
     documents.assignAll(data.map(HistoryItem.fromMap).take(5).toList());
   }
 
+  String get greeting {
+    final hour = DateTime.now().hour;
+    if (hour < 12) {
+      return getl10n.goodMorning;
+    } else if (hour < 17) {
+      return getl10n.goodAfternoon;
+    } else if (hour < 21) {
+      return getl10n.goodEvening;
+    } else {
+      return getl10n.goodNight;
+    }
+  }
+
   String formatDate(DateTime date) {
     final now = DateTime.now();
 

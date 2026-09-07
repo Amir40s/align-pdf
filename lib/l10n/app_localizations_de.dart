@@ -373,4 +373,78 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get createdPdfsWillAppearHere => 'Ihre erstellten PDFs werden hier angezeigt.';
+
+  @override
+  String get goodMorning => 'Guten Morgen';
+
+  @override
+  String get goodAfternoon => 'Guten Tag';
+
+  @override
+  String get goodEvening => 'Guten Abend';
+
+  @override
+  String get goodNight => 'Gute Nacht';
+
+  @override
+  String get history => 'Verlauf';
+
+  @override
+  String get extractText => 'Text extrahieren';
+
+  @override
+  String get ocrComplete => 'OCR abgeschlossen';
+
+  @override
+  String get searchablePdf => 'Durchsuchbares PDF';
+
+  @override
+  String get saveText => 'Text speichern';
+
+  @override
+  String get discard => 'Verwerfen';
+
+  @override
+  String get rawText => 'ROHTEXT';
+
+  @override
+  String get extractedText => 'Extrahierter Text...';
+
+  @override
+  String get copied => 'Kopiert';
+
+  @override
+  String get textCopiedToClipboard => 'Text wurde in die Zwischenablage kopiert.';
+
+  @override
+  String get copyError => 'Kopierfehler';
+
+  @override
+  String get unableToCopyTextToClipboard => 'Der Text konnte nicht in die Zwischenablage kopiert werden.';
+
+  @override
+  String get nothingToSave => 'Nichts zu speichern';
+
+  @override
+  String get noExtractedTextToSave => 'Es gibt keinen extrahierten Text zum Speichern.';
+
+  @override
+  String get textSaved => 'Text gespeichert';
+
+  @override
+  String textFileSavedSuccessfully(Object fileName) {
+    return '$fileName wurde erfolgreich gespeichert.';
+  }
+
+  @override
+  String get saveError => 'Speicherfehler';
+
+  @override
+  String get unableToSaveTxtFile => 'Die TXT-Datei konnte nicht gespeichert werden.';
+
+  @override
+  String get searchablePdfOptionSelected => 'Die Option für durchsuchbare PDFs wurde ausgewählt.';
+
+  @override
+  String get unableToCreateSearchablePdf => 'Das durchsuchbare PDF konnte nicht erstellt werden.';
 }

@@ -15,7 +15,7 @@ class HistoryView extends GetView<HistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'History'),
+      appBar: CustomAppBar(title: context.l10n.history),
       body: Obx(() {
         if (controller.history.isEmpty) {
           return _EmptyHistory();

@@ -373,4 +373,78 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get createdPdfsWillAppearHere => 'קובצי ה-PDF שיצרת יופיעו כאן.';
+
+  @override
+  String get goodMorning => 'בוקר טוב';
+
+  @override
+  String get goodAfternoon => 'אחר צהריים טובים';
+
+  @override
+  String get goodEvening => 'ערב טוב';
+
+  @override
+  String get goodNight => 'לילה טוב';
+
+  @override
+  String get history => 'היסטוריה';
+
+  @override
+  String get extractText => 'חילוץ טקסט';
+
+  @override
+  String get ocrComplete => 'ה-OCR הושלם';
+
+  @override
+  String get searchablePdf => 'PDF ניתן לחיפוש';
+
+  @override
+  String get saveText => 'שמירת טקסט';
+
+  @override
+  String get discard => 'ביטול';
+
+  @override
+  String get rawText => 'טקסט גולמי';
+
+  @override
+  String get extractedText => 'טקסט שחולץ...';
+
+  @override
+  String get copied => 'הועתק';
+
+  @override
+  String get textCopiedToClipboard => 'הטקסט הועתק ללוח.';
+
+  @override
+  String get copyError => 'שגיאת העתקה';
+
+  @override
+  String get unableToCopyTextToClipboard => 'לא ניתן להעתיק את הטקסט ללוח.';
+
+  @override
+  String get nothingToSave => 'אין מה לשמור';
+
+  @override
+  String get noExtractedTextToSave => 'אין טקסט שחולץ לשמירה.';
+
+  @override
+  String get textSaved => 'הטקסט נשמר';
+
+  @override
+  String textFileSavedSuccessfully(Object fileName) {
+    return '$fileName נשמר בהצלחה.';
+  }
+
+  @override
+  String get saveError => 'שגיאת שמירה';
+
+  @override
+  String get unableToSaveTxtFile => 'לא ניתן לשמור את קובץ ה-TXT.';
+
+  @override
+  String get searchablePdfOptionSelected => 'אפשרות ה-PDF הניתן לחיפוש נבחרה.';
+
+  @override
+  String get unableToCreateSearchablePdf => 'לא ניתן ליצור PDF הניתן לחיפוש.';
 }

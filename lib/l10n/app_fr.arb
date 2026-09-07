@@ -119,5 +119,33 @@
   "scanAlignSimplify": "Scannez. Alignez. Simplifiez.",
   "makingDocumentsSmarter": "Des documents plus intelligents",
   "noHistoryYet": "Aucun historique pour le moment",
-  "createdPdfsWillAppearHere": "Vos PDF créés apparaîtront ici."
+  "createdPdfsWillAppearHere": "Vos PDF créés apparaîtront ici.",
+  
+  "goodMorning": "Bonjour",
+  "goodAfternoon": "Bon après-midi",
+  "goodEvening": "Bonsoir",
+  "goodNight": "Bonne nuit",
+  "history": "Historique",
+  
+  "extractText": "Extraire le texte",
+  "ocrComplete": "OCR terminé",
+  "searchablePdf": "PDF consultable",
+  "saveText": "Enregistrer le texte",
+  "discard": "Ignorer",
+  "rawText": "TEXTE BRUT",
+  "extractedText": "Texte extrait...",
+  "copied": "Copié",
+  "textCopiedToClipboard": "Texte copié dans le presse-papiers.",
+  "copyError": "Erreur de copie",
+  "unableToCopyTextToClipboard": "Impossible de copier le texte dans le presse-papiers.",
+  "nothingToSave": "Rien à enregistrer",
+  "noExtractedTextToSave": "Aucun texte extrait à enregistrer.",
+  "textSaved": "Texte enregistré",
+  "textFileSavedSuccessfully": "{fileName} a été enregistré avec succès.",
+  "saveError": "Erreur d’enregistrement",
+  "unableToSaveTxtFile": "Impossible d’enregistrer le fichier TXT.",
+  "searchablePdfOptionSelected": "L’option PDF consultable a été sélectionnée.",
+  "unableToCreateSearchablePdf": "Impossible de créer le PDF consultable."
+
+
 }

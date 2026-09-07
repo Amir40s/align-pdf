@@ -373,4 +373,78 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createdPdfsWillAppearHere => 'Your created PDFs will appear here.';
+
+  @override
+  String get goodMorning => 'Good Morning';
+
+  @override
+  String get goodAfternoon => 'Good Afternoon';
+
+  @override
+  String get goodEvening => 'Good Evening';
+
+  @override
+  String get goodNight => 'Good Night';
+
+  @override
+  String get history => 'History';
+
+  @override
+  String get extractText => 'Extract Text';
+
+  @override
+  String get ocrComplete => 'OCR Complete';
+
+  @override
+  String get searchablePdf => 'Searchable PDF';
+
+  @override
+  String get saveText => 'Save Text';
+
+  @override
+  String get discard => 'Discard';
+
+  @override
+  String get rawText => 'RAW TEXT';
+
+  @override
+  String get extractedText => 'Extracted text...';
+
+  @override
+  String get copied => 'Copied';
+
+  @override
+  String get textCopiedToClipboard => 'Text copied to clipboard.';
+
+  @override
+  String get copyError => 'Copy Error';
+
+  @override
+  String get unableToCopyTextToClipboard => 'Unable to copy text to clipboard.';
+
+  @override
+  String get nothingToSave => 'Nothing to Save';
+
+  @override
+  String get noExtractedTextToSave => 'There is no extracted text to save.';
+
+  @override
+  String get textSaved => 'Text Saved';
+
+  @override
+  String textFileSavedSuccessfully(Object fileName) {
+    return '$fileName has been saved successfully.';
+  }
+
+  @override
+  String get saveError => 'Save Error';
+
+  @override
+  String get unableToSaveTxtFile => 'Unable to save the TXT file.';
+
+  @override
+  String get searchablePdfOptionSelected => 'Searchable PDF option selected.';
+
+  @override
+  String get unableToCreateSearchablePdf => 'Unable to create searchable PDF.';
 }

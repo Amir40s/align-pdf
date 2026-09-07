@@ -373,4 +373,78 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get createdPdfsWillAppearHere => 'Vos PDF créés apparaîtront ici.';
+
+  @override
+  String get goodMorning => 'Bonjour';
+
+  @override
+  String get goodAfternoon => 'Bon après-midi';
+
+  @override
+  String get goodEvening => 'Bonsoir';
+
+  @override
+  String get goodNight => 'Bonne nuit';
+
+  @override
+  String get history => 'Historique';
+
+  @override
+  String get extractText => 'Extraire le texte';
+
+  @override
+  String get ocrComplete => 'OCR terminé';
+
+  @override
+  String get searchablePdf => 'PDF consultable';
+
+  @override
+  String get saveText => 'Enregistrer le texte';
+
+  @override
+  String get discard => 'Ignorer';
+
+  @override
+  String get rawText => 'TEXTE BRUT';
+
+  @override
+  String get extractedText => 'Texte extrait...';
+
+  @override
+  String get copied => 'Copié';
+
+  @override
+  String get textCopiedToClipboard => 'Texte copié dans le presse-papiers.';
+
+  @override
+  String get copyError => 'Erreur de copie';
+
+  @override
+  String get unableToCopyTextToClipboard => 'Impossible de copier le texte dans le presse-papiers.';
+
+  @override
+  String get nothingToSave => 'Rien à enregistrer';
+
+  @override
+  String get noExtractedTextToSave => 'Aucun texte extrait à enregistrer.';
+
+  @override
+  String get textSaved => 'Texte enregistré';
+
+  @override
+  String textFileSavedSuccessfully(Object fileName) {
+    return '$fileName a été enregistré avec succès.';
+  }
+
+  @override
+  String get saveError => 'Erreur d’enregistrement';
+
+  @override
+  String get unableToSaveTxtFile => 'Impossible d’enregistrer le fichier TXT.';
+
+  @override
+  String get searchablePdfOptionSelected => 'L’option PDF consultable a été sélectionnée.';
+
+  @override
+  String get unableToCreateSearchablePdf => 'Impossible de créer le PDF consultable.';
 }

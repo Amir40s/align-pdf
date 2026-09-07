@@ -135,7 +135,32 @@
    "scanAlignSimplify": "Scan. Align. Simplify.",
   "makingDocumentsSmarter": "Making documents smarter",
   "noHistoryYet": "No History Yet",
-  "createdPdfsWillAppearHere": "Your created PDFs will appear here."
+  "createdPdfsWillAppearHere": "Your created PDFs will appear here.",
+  
+  "goodMorning": "Good Morning",
+  "goodAfternoon": "Good Afternoon",
+  "goodEvening": "Good Evening",
+  "goodNight": "Good Night",
+  "history": "History",
+  "extractText": "Extract Text",
+  "ocrComplete": "OCR Complete",
+  "searchablePdf": "Searchable PDF",
+  "saveText": "Save Text",
+  "discard": "Discard",
+  "rawText": "RAW TEXT",
+  "extractedText": "Extracted text...",
+  "copied": "Copied",
+  "textCopiedToClipboard": "Text copied to clipboard.",
+  "copyError": "Copy Error",
+  "unableToCopyTextToClipboard": "Unable to copy text to clipboard.",
+  "nothingToSave": "Nothing to Save",
+  "noExtractedTextToSave": "There is no extracted text to save.",
+  "textSaved": "Text Saved",
+  "textFileSavedSuccessfully": "{fileName} has been saved successfully.",
+  "saveError": "Save Error",
+  "unableToSaveTxtFile": "Unable to save the TXT file.",
+  "searchablePdfOptionSelected": "Searchable PDF option selected.",
+  "unableToCreateSearchablePdf": "Unable to create searchable PDF."
 
 
 }

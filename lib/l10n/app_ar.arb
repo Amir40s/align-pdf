@@ -135,7 +135,31 @@
   "scanAlignSimplify": "امسح. حاذِ. بسّط.",
   "makingDocumentsSmarter": "نجعل مستنداتك أكثر ذكاءً",
   "noHistoryYet": "لا يوجد سجل حتى الآن",
-  "createdPdfsWillAppearHere": "ستظهر ملفات PDF التي أنشأتها هنا."
+  "createdPdfsWillAppearHere": "ستظهر ملفات PDF التي أنشأتها هنا.",
+  "goodMorning": "صباح الخير",
+  "goodAfternoon": "مساء الخير",
+  "goodEvening": "مساء الخير",
+  "goodNight": "تصبح على خير",
+  "history": "السجل",
+  "extractText": "استخراج النص",
+  "ocrComplete": "اكتمل التعرف الضوئي على النص",
+  "searchablePdf": "PDF قابل للبحث",
+  "saveText": "حفظ النص",
+  "discard": "تجاهل",
+  "rawText": "النص الخام",
+  "extractedText": "النص المستخرج...",
+  "copied": "تم النسخ",
+  "textCopiedToClipboard": "تم نسخ النص إلى الحافظة.",
+  "copyError": "خطأ في النسخ",
+  "unableToCopyTextToClipboard": "تعذر نسخ النص إلى الحافظة.",
+  "nothingToSave": "لا يوجد شيء لحفظه",
+  "noExtractedTextToSave": "لا يوجد نص مستخرج لحفظه.",
+  "textSaved": "تم حفظ النص",
+  "textFileSavedSuccessfully": "تم حفظ {fileName} بنجاح.",
+  "saveError": "خطأ في الحفظ",
+  "unableToSaveTxtFile": "تعذر حفظ ملف TXT.",
+  "searchablePdfOptionSelected": "تم تحديد خيار PDF القابل للبحث.",
+  "unableToCreateSearchablePdf": "تعذر إنشاء ملف PDF قابل للبحث."
 
 
 

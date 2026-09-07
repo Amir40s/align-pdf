@@ -373,4 +373,78 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get createdPdfsWillAppearHere => 'Los PDF que crees aparecerán aquí.';
+
+  @override
+  String get goodMorning => 'Buenos días';
+
+  @override
+  String get goodAfternoon => 'Buenas tardes';
+
+  @override
+  String get goodEvening => 'Buenas tardes';
+
+  @override
+  String get goodNight => 'Buenas noches';
+
+  @override
+  String get history => 'Historial';
+
+  @override
+  String get extractText => 'Extraer texto';
+
+  @override
+  String get ocrComplete => 'OCR completado';
+
+  @override
+  String get searchablePdf => 'PDF con texto seleccionable';
+
+  @override
+  String get saveText => 'Guardar texto';
+
+  @override
+  String get discard => 'Descartar';
+
+  @override
+  String get rawText => 'TEXTO SIN PROCESAR';
+
+  @override
+  String get extractedText => 'Texto extraído...';
+
+  @override
+  String get copied => 'Copiado';
+
+  @override
+  String get textCopiedToClipboard => 'Texto copiado al portapapeles.';
+
+  @override
+  String get copyError => 'Error al copiar';
+
+  @override
+  String get unableToCopyTextToClipboard => 'No se pudo copiar el texto al portapapeles.';
+
+  @override
+  String get nothingToSave => 'Nada que guardar';
+
+  @override
+  String get noExtractedTextToSave => 'No hay texto extraído para guardar.';
+
+  @override
+  String get textSaved => 'Texto guardado';
+
+  @override
+  String textFileSavedSuccessfully(Object fileName) {
+    return '$fileName se ha guardado correctamente.';
+  }
+
+  @override
+  String get saveError => 'Error al guardar';
+
+  @override
+  String get unableToSaveTxtFile => 'No se pudo guardar el archivo TXT.';
+
+  @override
+  String get searchablePdfOptionSelected => 'Se seleccionó la opción de PDF con texto seleccionable.';
+
+  @override
+  String get unableToCreateSearchablePdf => 'No se pudo crear el PDF con texto seleccionable.';
 }

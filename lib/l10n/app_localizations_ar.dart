@@ -373,4 +373,78 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get createdPdfsWillAppearHere => 'ستظهر ملفات PDF التي أنشأتها هنا.';
+
+  @override
+  String get goodMorning => 'صباح الخير';
+
+  @override
+  String get goodAfternoon => 'مساء الخير';
+
+  @override
+  String get goodEvening => 'مساء الخير';
+
+  @override
+  String get goodNight => 'تصبح على خير';
+
+  @override
+  String get history => 'السجل';
+
+  @override
+  String get extractText => 'استخراج النص';
+
+  @override
+  String get ocrComplete => 'اكتمل التعرف الضوئي على النص';
+
+  @override
+  String get searchablePdf => 'PDF قابل للبحث';
+
+  @override
+  String get saveText => 'حفظ النص';
+
+  @override
+  String get discard => 'تجاهل';
+
+  @override
+  String get rawText => 'النص الخام';
+
+  @override
+  String get extractedText => 'النص المستخرج...';
+
+  @override
+  String get copied => 'تم النسخ';
+
+  @override
+  String get textCopiedToClipboard => 'تم نسخ النص إلى الحافظة.';
+
+  @override
+  String get copyError => 'خطأ في النسخ';
+
+  @override
+  String get unableToCopyTextToClipboard => 'تعذر نسخ النص إلى الحافظة.';
+
+  @override
+  String get nothingToSave => 'لا يوجد شيء لحفظه';
+
+  @override
+  String get noExtractedTextToSave => 'لا يوجد نص مستخرج لحفظه.';
+
+  @override
+  String get textSaved => 'تم حفظ النص';
+
+  @override
+  String textFileSavedSuccessfully(Object fileName) {
+    return 'تم حفظ $fileName بنجاح.';
+  }
+
+  @override
+  String get saveError => 'خطأ في الحفظ';
+
+  @override
+  String get unableToSaveTxtFile => 'تعذر حفظ ملف TXT.';
+
+  @override
+  String get searchablePdfOptionSelected => 'تم تحديد خيار PDF القابل للبحث.';
+
+  @override
+  String get unableToCreateSearchablePdf => 'تعذر إنشاء ملف PDF قابل للبحث.';
 }

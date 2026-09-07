@@ -822,6 +822,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your created PDFs will appear here.'**
   String get createdPdfsWillAppearHere;
+
+  /// No description provided for @goodMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Morning'**
+  String get goodMorning;
+
+  /// No description provided for @goodAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Afternoon'**
+  String get goodAfternoon;
+
+  /// No description provided for @goodEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Evening'**
+  String get goodEvening;
+
+  /// No description provided for @goodNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Night'**
+  String get goodNight;
+
+  /// No description provided for @history.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get history;
+
+  /// No description provided for @extractText.
+  ///
+  /// In en, this message translates to:
+  /// **'Extract Text'**
+  String get extractText;
+
+  /// No description provided for @ocrComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'OCR Complete'**
+  String get ocrComplete;
+
+  /// No description provided for @searchablePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Searchable PDF'**
+  String get searchablePdf;
+
+  /// No description provided for @saveText.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Text'**
+  String get saveText;
+
+  /// No description provided for @discard.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get discard;
+
+  /// No description provided for @rawText.
+  ///
+  /// In en, this message translates to:
+  /// **'RAW TEXT'**
+  String get rawText;
+
+  /// No description provided for @extractedText.
+  ///
+  /// In en, this message translates to:
+  /// **'Extracted text...'**
+  String get extractedText;
+
+  /// No description provided for @copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get copied;
+
+  /// No description provided for @textCopiedToClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Text copied to clipboard.'**
+  String get textCopiedToClipboard;
+
+  /// No description provided for @copyError.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Error'**
+  String get copyError;
+
+  /// No description provided for @unableToCopyTextToClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to copy text to clipboard.'**
+  String get unableToCopyTextToClipboard;
+
+  /// No description provided for @nothingToSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to Save'**
+  String get nothingToSave;
+
+  /// No description provided for @noExtractedTextToSave.
+  ///
+  /// In en, this message translates to:
+  /// **'There is no extracted text to save.'**
+  String get noExtractedTextToSave;
+
+  /// No description provided for @textSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Text Saved'**
+  String get textSaved;
+
+  /// No description provided for @textFileSavedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'{fileName} has been saved successfully.'**
+  String textFileSavedSuccessfully(Object fileName);
+
+  /// No description provided for @saveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Error'**
+  String get saveError;
+
+  /// No description provided for @unableToSaveTxtFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to save the TXT file.'**
+  String get unableToSaveTxtFile;
+
+  /// No description provided for @searchablePdfOptionSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Searchable PDF option selected.'**
+  String get searchablePdfOptionSelected;
+
+  /// No description provided for @unableToCreateSearchablePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to create searchable PDF.'**
+  String get unableToCreateSearchablePdf;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
