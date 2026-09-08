@@ -1,6 +1,7 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
 import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
+import 'package:align_pdf_ai/app/core/widgets/banner_ad_widget.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_button.dart';
 import 'package:align_pdf_ai/app/modules/scan_result/controller/scan_result_controller.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,8 @@ class ScanResultView extends GetView<ScanResultController> {
               _buildHeader(),
               _buildSuccessIcon(),
               SizedBox(height: 2.6.h),
+              Center(child: const BannerAdWidget()),
+              SizedBox(height: 1.2),
               _buildTitle(context),
               SizedBox(height: 1.6.h),
               _buildDescription(context),

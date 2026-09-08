@@ -1,3 +1,4 @@
+import 'package:align_pdf_ai/app/core/services/ads_service.dart';
 import 'package:align_pdf_ai/app/core/theme/app_theme.dart';
 import 'package:align_pdf_ai/app/modules/setting/controller/language_controller.dart';
 import 'package:align_pdf_ai/l10n/app_localizations.dart';
@@ -11,6 +12,7 @@ import 'app/routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  AdsService.instance.init();
   Get.put(LanguageController());
 
   runApp(const MyApp());

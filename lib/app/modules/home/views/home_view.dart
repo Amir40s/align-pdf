@@ -1,5 +1,7 @@
+import 'package:align_pdf_ai/app/core/services/ads_service.dart';
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
 import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
+import 'package:align_pdf_ai/app/core/widgets/banner_ad_widget.dart';
 import 'package:align_pdf_ai/app/modules/home/views/widget/history_card.dart';
 import 'package:align_pdf_ai/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -77,9 +79,9 @@ class HomeView extends GetView<HomeController> {
                     ),
                     Gap(2.2.h),
                     GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.SCAN_DOCUMENT);
-                      },
+                      onTap: () => AdsService.instance.handleToolClick(
+                        () => Get.toNamed(Routes.SCAN_DOCUMENT),
+                      ),
                       child: Container(
                         width: 100.w,
                         padding: EdgeInsets.symmetric(
@@ -128,6 +130,7 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ),
                     Gap(3.0.h),
+                    Center(child: const BannerAdWidget()),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [

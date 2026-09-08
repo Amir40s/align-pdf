@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:align_pdf_ai/app/core/services/ads_service.dart';
 import 'package:align_pdf_ai/app/core/services/app_storage.dart';
 import 'package:align_pdf_ai/app/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,21 @@ class SplashController extends GetxController {
   void onInit() {
     super.onInit();
 
-    _startSplash();
+    _startup();
+  }
+
+  Future<void> _startup() async {
+    try {
+      await Future.delayed(const Duration(seconds: 3));
+      final isLoaded = await AdsService.instance.waitForAppOpenAd();
+      if (isLoaded) {
+        AdsService.instance.showAppOpenAd(onComplete: _startSplash);
+      } else {
+        _startSplash();
+      }
+    } catch (e) {
+      _startSplash();
+    }
   }
 
   void _startSplash() {

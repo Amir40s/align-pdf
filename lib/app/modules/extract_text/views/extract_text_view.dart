@@ -1,6 +1,7 @@
 import 'package:align_pdf_ai/app/core/theme/app_colors.dart';
 import 'package:align_pdf_ai/app/core/utils/l10n_utils.dart';
 import 'package:align_pdf_ai/app/core/widgets/app_text_widget.dart';
+import 'package:align_pdf_ai/app/core/widgets/banner_ad_widget.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_appbar.dart';
 import 'package:align_pdf_ai/app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,8 @@ class ExtractTextView extends GetView<ExtractTextController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ExtractDocumentPreview(imagePath: controller.imagePath),
+                    Gap(2.h),
+                    Center(child: const BannerAdWidget()),
                     Gap(3.h),
                     Container(
                       height: 5.2.h,
